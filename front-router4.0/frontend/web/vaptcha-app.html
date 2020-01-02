@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scalable=no">
+    <title>手势验证</title>
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #808080;
+        }
+
+        .nc-container.nc-scrape .nc-toolbar {
+            text-indent: 10px;
+        }
+
+        .captcha.nc-container,
+        .captcha .nc-container {
+            margin: 100px auto 0;
+            padding: 20px 0;
+            background-color: #fff;
+        }
+
+
+        .captcha.nc-container {
+            width: 360px;
+        }
+
+        ._nc .stage1,
+        ._nc .stage1 .slider {
+            height: 34px !important;
+        }
+
+        ._nc .stage1 .icon {
+            left: 7px !important;
+            top: 6px !important;
+        }
+
+        ._nc .stage1 .icon.icon-ok {
+            left: 3px !important;
+            top: -2px !important;
+        }
+
+        ._nc .stage1 .button {
+            width: 34px !important;
+            height: 34px !important;
+        }
+
+        ._nc .stage1 .track div,
+        ._nc .stage1 .label {
+            line-height: 34px !important;
+            height: 34px !important;
+        }
+
+        ._nc .icon-slide-arrow {
+            font-size: 20px !important;
+        }
+
+        ._nc .stage3 {
+            padding-top: 1px !important;
+            background-color: #e8e8e8;
+            width: 300px;
+            margin: 0 auto;
+        }
+
+        ._nc .stage3 .title {
+            font-size: 12px !important;
+        }
+
+        ._nc .stage3 a {
+            color: #30a7fc;
+        }
+
+        .captcha .nch5_iconfont {
+            visibility: hidden;
+        }
+    </style>
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+</head>
+
+<body>
+    <div id="captcha" class="captcha"></div>
+    <div id="mask"></div>
+    <script type="text/javascript">
+        window.NVC_Opt = {
+            //无痕配置 && 滑动验证、刮刮卡、问答验证码通用配置
+            // appkey:'FFFF0N0000000000829E',
+            // scene:'nvc_login',
+            appkey: 'FFFF0N0N000000008299'
+            , scene: 'nvc_message_h5'
+            , isH5: true
+            , popUp: false
+            , renderTo: '#captcha'
+            , nvcCallback: function (data) {
+                // data为getNVCVal()的值，此函数为二次验证滑动或者刮刮卡通过后的回调函数
+                // data跟业务请求一起上传，由后端请求AnalyzeNvc接口，接口会返回100或者900
+                reqVerifyCodeNew(data);
+            },
+            // trans字段值    模拟效果
+            trans: {}
+            , language: "cn",
+            //滑动验证长度配置
+            customWidth: 300,
+            //刮刮卡配置项
+            width: 300
+            , height: 100
+            , elements: [
+                '//img.alicdn.com/tfs/TB17cwllsLJ8KJjy0FnXXcFDpXa-50-74.png'
+                , '//img.alicdn.com/tfs/TB17cwllsLJ8KJjy0FnXXcFDpXa-50-74.png'
+            ]
+            , bg_back_prepared: '//img.alicdn.com/tps/TB1skE5SFXXXXb3XXXXXXXXXXXX-100-80.png'
+            , bg_front: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABQCAMAAADY1yDdAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURefk5w+ruswAAAAfSURBVFjD7cExAQAAAMKg9U9tCU+gAAAAAAAAAIC3AR+QAAFPlUGoAAAAAElFTkSuQmCC'
+            , obj_ok: '//img.alicdn.com/tfs/TB1rmyTltfJ8KJjy0FeXXXKEXXa-50-74.png'
+            , bg_back_pass: '//img.alicdn.com/tfs/TB1KDxCSVXXXXasXFXXXXXXXXXX-100-80.png'
+            , obj_error: '//img.alicdn.com/tfs/TB1q9yTltfJ8KJjy0FeXXXKEXXa-50-74.png'
+            , bg_back_fail: '//img.alicdn.com/tfs/TB1w2oOSFXXXXb4XpXXXXXXXXXX-100-80.png'
+            , upLang: {
+                "cn": {
+                    _ggk_guide: "请在屏幕上滑动，刮出两面盾牌"
+                    , _ggk_success: "恭喜您成功刮出盾牌<br/>继续下一步操作吧"
+                    , _ggk_loading: "加载中"
+                    , _ggk_fail: ['呀，盾牌不见了<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                    , _ggk_action_timeout: ['我等得太久啦<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                    , _ggk_net_err: ['网络实在不给力<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                    , _ggk_too_fast: ['您刮得太快啦<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                }
+            }
+        }
+    </script>
+    <!--引入guide.js前必须已定义NVC_Opt。-->
+    <script src="//g.alicdn.com/sd/nvc/1.1.112/guide.js"></script>
+    <script type="text/javascript">
+        var headersDatas = <%- data %>;
+        if(headersDatas.bolueClient == 'miniprogram'){
+            var _s = document.createElement('script');
+            _s.type = 'text/javascript';
+            _s.src = '//res.wx.qq.com/open/js/jweixin-1.3.2.js';
+            document.body.appendChild(_s);            
+        }
+        window.onload = function () {
+            if (headersDatas.bolueClient == 'ios' || headersDatas.bolueClient == 'miniprogram') {
+                if (headersDatas) {
+                    callCheckFn(headersDatas);
+                }
+            } else {
+                //监听webview发来的消息
+                window.document.addEventListener('message', function (e) {
+                    let { phoneOrEmail, verifyType, isVoice, bolueClient, bolueVer, UUIDIMEI, devToken, myAuth } = JSON.parse(e.data);
+                    // document.getElementById('markTest').innerHTML = 00 + e.data;
+                    headersDatas = {
+                        phoneOrEmail: phoneOrEmail
+                        , verifyType: verifyType
+                        , isVoice: isVoice
+                        , bolueClient: bolueClient
+                        , bolueVer: bolueVer
+                        , UUIDIMEI: UUIDIMEI
+                        , devToken: devToken
+                        , myAuth: myAuth
+                    }
+                    callCheckFn(headersDatas);
+                })
+            }
+        }
+
+        var opt = {
+            basePath: (window.location.pathname.indexOf('/test') > -1 || window.location.host.indexOf('localhost:8080') > -1) ? '/test' : ''
+            , post_url: 'https://apim.bolue.cn'
+            , static_url: 'https://mb.bolue.cn'
+        }
+
+        function callCheckFn(dataObj) {
+            // document.getElementById('markTest').innerHTML = 1 + JSON.stringify(dataObj)
+            $.ajax({
+                type: 'GET'
+                , url: opt.post_url + opt.basePath + '/v2/getOutsideServiceStatus/?random=' + Math.random()
+                , headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                    , bolueClient: dataObj.bolueClient
+                    , bolueVer: dataObj.bolueVer
+                    , UUIDIMEI: dataObj.UUIDIMEI
+                    , MyAuth: dataObj.myAuth
+                    , devToken: dataObj.devToken
+                }
+                , data: {
+                    scd: 'ssyz2'
+                }
+                , success: function (data) {
+                    var params;
+                    if (data && data.result) {
+                        params = getNVCVal();
+                    } else {
+                        params = null;
+                    }
+                    reqVerifyCodeNew(params)
+                }
+                , error: function (err) {
+                    let params = { key: 'error', value: '网络实在不给力，请再来一次' }
+                    if (dataObj.bolueClient == 'ios') {
+                        window.webkit.messageHandlers.appModel.postMessage(JSON.stringify(params))
+                    } else if (dataObj.bolueClient == 'miniprogram'){
+                        wx.miniProgram.postMessage({data: params});
+                        wx.miniProgram.navigateBack()
+                    } else {
+                        window.postMessage(JSON.stringify(params))
+                    }
+                }
+
+            })
+
+        }
+
+        function reqVerifyCodeNew(params) {
+            // document.getElementById('markTest').innerHTML = 2 + JSON.stringify(headersDatas);
+            $.ajax({
+                type: 'POST'
+                , url: opt.post_url + opt.basePath + '/v2/reqVerifyCodeNew/?random=' + Math.random()
+                , headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                    , bolueClient: headersDatas.bolueClient
+                    , bolueVer: headersDatas.bolueVer
+                    , UUIDIMEI: headersDatas.UUIDIMEI
+                    , MyAuth: headersDatas.myAuth
+                    , devToken: headersDatas.devToken
+                }
+                , data: JSON.stringify({
+                    phoneOrEmail: headersDatas.phoneOrEmail
+                    , verifyType: headersDatas.verifyType
+                    , isVoice: headersDatas.isVoice
+                    , nvcVal: params ? decodeURIComponent(params) : null
+                })
+                , success: function (data) {
+                    // document.getElementById('markTest').innerHTML = 'success' + JSON.stringify(data)
+                    if (data && data.err) {
+                        // alert(data.err);
+                        let params = { key: 'error', value: data.err }
+                        if (headersDatas.bolueClient == 'ios') {
+                            window.webkit.messageHandlers.appModel.postMessage(JSON.stringify(params))
+                        } else if (headersDatas.bolueClient == 'miniprogram'){
+                            wx.miniProgram.postMessage({data: params});
+                            wx.miniProgram.navigateBack()
+                        } else {
+                            window.postMessage(JSON.stringify(params))
+                        }
+                    } else {
+                        if (data.result != true) {
+                            handleALiVaptCha(data.result)
+                        } else {
+                            let params = { key: 'pass', value: true }
+                            if (headersDatas.bolueClient == 'ios') {
+                                window.webkit.messageHandlers.appModel.postMessage(JSON.stringify(params))
+                            }  else if (headersDatas.bolueClient == 'miniprogram'){
+                                wx.miniProgram.postMessage({data: params});
+                                wx.miniProgram.navigateBack()
+                            } else {
+                                window.postMessage(JSON.stringify(params))
+                            }
+                        }
+                    }
+                }
+                , error: function (err) {
+                    document.getElementById('markTest').innerHTML = 'error' + JSON.stringify(err)
+                    // let params = JSON.stringify({ key: 'error', value: err })
+                    let params = { key: 'error', value: '网络实在不给力，请再来一次' }
+                    if (headersDatas.bolueClient == 'ios') {
+                        window.webkit.messageHandlers.appModel.postMessage(JSON.stringify(params))
+                    }  else if (headersDatas.bolueClient == 'miniprogram'){
+                        wx.miniProgram.postMessage({data: params});
+                        wx.miniProgram.navigateBack()
+                    } else {
+                        window.postMessage(JSON.stringify(params))
+                    }
+                }
+
+            })
+
+        }
+
+        function handleALiVaptCha(code) {
+            if (code == 400) {
+                //唤醒滑动验证
+                getNC().then(function () {
+                    NoCaptcha.upLang('cn', {
+                        'LOADING': "加载中...", //加载
+                        'SLIDER_LABEL': "请向右滑动验证", //等待滑动
+                        'CHECK_Y': "验证通过", //通过
+                        'ERROR_TITLE': "哎呀，出错了，点击<a href=\"javascript:NoCaptcha.reset()\">刷新</a>再来一次", //拦截
+                        'FEEDBACK_URL': 'https://mb.bolue.cn/PgAdvice'
+                        , 'CHECK_N': "验证未通过", //准备唤醒二次验证
+                        'OVERLAY_INFORM': "经检测你当前操作环境存在风险，请输入验证码", //二次验证
+                        'TIPS_TITLE': "验证码错误，请重新输入", //验证码输错时的提示
+                    });
+                    _nvc_nc.reset();
+                })
+            } else if (code == 600) {
+                //唤醒刮刮卡
+                getSC().then(function () { })
+            } else if (code == 700) {
+                //唤醒问答验证码
+                getLC()
+            } else if (code == 100 || code == 200) {
+                //注册成功
+                nvcReset()
+            } else if (code == 800 || code == 900) {
+                //直接拦截
+                nvcReset()
+                let params = { key: 'error', value: '获取验证码失败，建议稍后再试' }
+                if (headersDatas.bolueClient == 'ios') {
+                    window.webkit.messageHandlers.appModel.postMessage(JSON.stringify(params))
+                } else if (headersDatas.bolueClient == 'miniprogram'){
+                    wx.miniProgram.postMessage({data: params});
+                    wx.miniProgram.navigateBack()
+                } else {
+                    window.postMessage(JSON.stringify(params))
+                }
+            }
+        }
+    </script>
+    <!-- <div id="markTest" style="word-break: break-all;">sssssssssssssssss</div> -->
+</body>
+
+</html>

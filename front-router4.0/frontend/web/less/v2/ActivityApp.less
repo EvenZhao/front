@@ -1,0 +1,60 @@
+@keyframes LeftAnimation
+{
+	from {left:-300px; opacity:0.3;}
+	to {opacity: 1;}
+}
+@keyframes RightAnimation
+{
+  from{ opacity:0;right:-300px}
+  to{opacity: 1;}
+}
+@keyframes transForm {
+  from{ opacity:0;transform:scale(0,0);}
+  to{opacity: 1;transform:scale(1,1)}
+}
+@keyframes fadeIn {
+	from{ opacity:0;}
+	to{opacity: 1;}
+}
+.page1_img1{
+	position:absolute;
+	z-index:2;
+	opacity: 0;
+	animation:LeftAnimation .8s ease-in-out 0s 1 forwards;
+}
+.page1_img2{
+	position:absolute;
+	z-index:2;
+	opacity: 0;
+	animation:LeftAnimation .9s linear .3s 1 forwards;
+}
+.page1_img3{
+	position:absolute;
+	z-index:2;
+	opacity: 0;
+	animation:transForm .9s ease .5s 1 forwards;
+}
+.page2_img2{
+	position:absolute;
+	z-index:2;
+	opacity: 0;
+	animation:transForm .6s ease .3s 1 forwards;
+}
+.page2_img3{
+	position:absolute;
+	z-index:3;
+	opacity: 0;
+	animation:RightAnimation .8s ease-in-out .6s 1 forwards;
+}
+.page3_img5{
+	position:absolute;
+	z-index:3;
+	opacity: 0;
+	animation:LeftAnimation .8s ease-in-out .6s 1 forwards;
+}
+.page5_img3{
+	position:absolute;
+	z-index:3;
+	opacity: 0;
+	animation:fadeIn .8s ease .3s 1 forwards;
+}

@@ -1,0 +1,549 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+    <meta name="renderer" content="webkit">
+    <title>铂略新年礼 | 邀你开启幸运大转盘！</title>
+    <script type="text/javascript">
+    var _url = (window.location.pathname.indexOf('/test') > -1) ? '/test' : '',
+    G_URL = window.location.origin + _url + '/html/20160113lottery.html',
+    POST_URL = 'http://apim.bolue.cn' + _url;
+    var descContent = "铂略新年礼 | 邀你开启幸运大转盘！",
+        shareTitle = "快来试试手气吧，小铂已经迫不及待要送出礼物啦！";
+    </script>
+    <style type="text/css">
+        html,body{ width:100%; height: 100%;}
+        body{color:#333;-webkit-text-size-adjust:none;max-width: 640px;margin: 0 auto;background-color: #E41B47;font-size: 12px;}
+        h1,h2,h3,h4,h5,h6,hr,p,blockquote,dl, dt,dd,ul,ol,li,pre,form,fieldset,legend,button,input,textarea,th,td,iframe{margin:0; padding:0;}
+        h1,h2,h3,h4,h5,h6{font-size:100%;}
+        body,button,input,select,textarea {font-family:Tahoma,Arial,Roboto,"Droid Sans","Helvetica Neue","Droid Sans Fallback","Heiti SC","sans-self"; line-height:1.5;}
+        ol,ul{list-style:none;}
+        .section_wrap{padding-bottom: 15px}
+        .section {position:relative;z-index: 1}
+        .section img{display: block;width: 100%;}
+        .section .act_wrap{display:-webkit-box;display: -ms-flexbox;display:box;box-orient:horizontal;}
+        .section .abs{position:absolute;top:0;left:0;width:100%;height:100%;}
+        .section .div_sp,.section a {display:block;height: 100%;-webkit-box-flex:1;-ms-flex:1;box-flex:1;}
+        .section .div_sp a{-webkit-box-flex:1;-ms-flex:none;box-flex:none;text-decoration: none;}
+        .s_top,.s_mid,.s_bot{opacity: 0;}
+        /*顶部进入*/
+        @-webkit-keyframes top{from{opacity:0;-webkit-transform:translateY(-30%);} to{opacity:1;-webkit-transform:translateY(0);}}
+        @keyframes top{from{opacity:0;transform:translateY(-30%)} to{opacity:1;transform:translateY(0)}}
+        @-webkit-keyframes top1{from{opacity:0;-webkit-transform:translateY(-15%);} to{opacity:1;-webkit-transform:translateY(0);}}
+        @keyframes top1{from{opacity:0;transform:translateY(-15%)} to{opacity:1;transform:translateY(0)}}
+        /*透明度*/
+        @-webkit-keyframes opci{from{opacity:0;/*-webkit-transform:translateY(-50%);transform:translateY(-50%)*/} to{opacity:1;/*-webkit-transform:translateY(0);transform:translateY(0)*/}}
+        @keyframes opci{from{opacity:0;} to{opacity:1;}}
+        /*底部进入*/
+        @-webkit-keyframes bot{from{opacity:0;-webkit-transform:translateY(30%);} to{opacity:1;-webkit-transform:translateY(0);}}
+        @keyframes bot{from{opacity:0;transform:translateY(30%)} to{opacity:1;transform:translateY(0)}}
+
+        /*放大*/
+        @-webkit-keyframes zb{from{opacity: 0.5;-webkit-transform:scale(0);} to{opacity: 1;-webkit-transform:scale(1);}}
+        @keyframes zb{from{opacity: 0.5;transform:scale(0);} to{opacity: 1;transform:scale(1);}}
+        @-webkit-keyframes zb1{from{opacity: 0.8;-webkit-transform:scale(0.8);} to{opacity: 1;-webkit-transform:scale(.9);}}
+        @keyframes zb1{from{opacity: 0.8;transform:scale(0.8);} to{opacity: 1;transform:scale(.9);}}
+
+        /*右侧进入*/
+        @-webkit-keyframes right{from{opacity:0;-webkit-transform:translateX(50%);} to{opacity:1;}}
+        @keyframes right{from{opacity:0;transform:translateX(50%)} to{opacity:1;}}
+        /*左侧进入*/
+        @-webkit-keyframes left{from{opacity:0;-webkit-transform:translateX(-50%);} to{opacity:1;}}
+        @keyframes left{from{opacity:0;transform:translateX(-50%)} to{opacity:1;}}
+
+        /*底部导航*/
+        .sec_fix{opacity: 0;position:absolute;top: 0;left: 0; width: 100%;z-index: 15;-webkit-animation:top cubic-bezier(0.86,0,0.1,.1) 1s 2s 1 normal forwards;animation:top cubic-bezier(0.86,0,0.1,.1) 1s 2s 1 normal forwards;}
+        
+        /*0*/
+        .section_0 .logo{width: 16%;left:10px;top:10px;z-index: 15}
+        .section_0{text-align: center;padding-top: 10px;}
+        .section_1{width: 87%;margin: -10px auto 0;}
+        .turntable-bg {background: url(../img/event/turnplate-bg.png) 0 0 no-repeat;background-size: 100% 100%;position: relative;width: 100%;} 
+        .turntable-bg .pointer {left: 50%; margin-left: -17.1%; position: absolute; top: 22.8%; width: 34.2%; z-index: 8; } 
+        .turntable-bg .turnplate {height: 100%; width: 100%; } 
+        .section_bg{background-color: #fff;border-radius: 5px;padding: 10px;line-height: 20px;width: 87%;margin: 0 auto;}
+        .turntable-bg .div {height: 100%; width: 100%; position: fixed;z-index: 2} 
+        .rules{margin-top: 4%;}
+        .no_choice{margin-top: 4%;}
+        .rules .title{border-bottom: 1px #E4E4E4 solid;margin: 5px 0;}
+        .rules .sp{color: #E41B47;text-align: center;}
+        .result img{width: 28.4%;margin: 0 auto 20px;}
+        .J_share_normal{display: none;width: 0;height: 0;}
+        #mask{display: none;position: fixed;z-index: 1;left: 0;top: 0;width: 100%;height: 100%;background: rgba(0,0,0,.5);}
+        .msg_box{display: none; position: fixed;z-index: 15;left: 6.5%;top: 30%;width: 77%;padding: 5%;font-size: 14px;text-align: center;}
+        .msg_box .btn{width: 30%;height: 30px;line-height: 30px;background-color:#21B8C5;border-radius: 5px;text-align: center;color: #fff;text-decoration: none;margin: 10px auto 0;}
+        .msg_box p{margin-bottom: 10px;}
+        .result label{display:inline-block; font-size: 14px;line-height: 20px;}
+        .result input{width: 60%;font-size: 14px;line-height: 20px;border-radius: 3px;border:1px #E4E4E4 solid;padding: 0 2%;}
+        .result .title{color: #21B8C5;}
+        input.lottery-code {
+            line-height: 30px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            width: 40%;
+        }
+        input.mobile {
+            line-height: 30px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            width: 60%;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="section_wrap">
+        <div class="section section_0">
+            <span class="J_share_normal"></span>
+            <div class="abs logo"><img src="../img/event/logo.png" alt="" /></div>
+            <img src="../img/event/b_1.png" alt="" />
+        </div>
+        <div class="section section_1">
+            <div class="turntable-bg">
+                <img alt="" src="../img/event/pointer.png" class="pointer">
+                <div class="div">&nbsp;</div>
+                <canvas width="650" height="650" id="wheelcanvas" class="turnplate"></canvas>
+            </div>
+        </div>
+        <div class="section section_bg no_choice">
+            <p>亲爱哒，您今天的抽奖机会已经用完啦！更多大礼等您明天再来挑战！感谢您对铂略的支持！</p>
+        </div>
+        <div class="section section_bg rules">
+            <p class="title"></p>
+            <p class="con"></p>
+            <p class="sp">领取礼品请咨询客服小铂</p>
+        </div>
+    </section>
+    <div class="section section_bg msg_box warming">
+        <p></p>
+        <a class="btns btn" href="javascript:;">我知道了</a>
+    </div>
+    <div class="section section_bg msg_box result">
+        <img src="../img/event/prize.png" alt="" />
+        <p class="prize"></p>
+        <p class="title">感谢您的参与
+            <br /> 请留下以下信息便于小铂与您联系</p>
+        <p>
+            <label>手机号：</label>
+            <input type="text" class="mobile" />
+        </p>
+        <a class="btn" href="javascript:;">确认提交</a>
+    </div>
+    <div id="u_info" class="section section_bg msg_box u_info">
+        <p class="title">感谢您的参与
+            <br /> 请留下以下信息便于小铂与您联系</p>
+        <p>
+            <label>姓名：</label>
+            <input type="text" class="name" />
+        </p>
+        <p>
+            <label>手机号：</label>
+            <input type="text" class="mobile" />
+        </p>
+        <p>
+            <label>公司名称：</label>
+            <input type="text" class="company" />
+        </p>
+        <a class="btn" href="javascript:;">确认提交</a>
+    </div>
+    <div id="lotteryCode" class="section section_bg msg_box lotteryCode">
+        <p class="title">请输入抽奖码</p>
+        <p>
+            <input type="text" class="name lottery-code" value="" />
+        </p>
+        <a class="btn" href="javascript:;">抽奖</a>
+    </div>
+    <div id="mask"></div>
+    <script type="text/javascript" src="../js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <script type="text/javascript" src="../js/awardRotate.js"></script>
+    <script type="text/javascript">
+    var LOT_URL = POST_URL + '/lottery';
+    var turnplate = {
+        restaraunts: [], //大转盘奖品名称
+        colors: [], //大转盘奖品区块对应背景颜色
+        outsideRadius: 290, //大转盘外圆的半径
+        textRadius: 205, //大转盘奖品位置距离圆心的距离
+        insideRadius: 108, //大转盘内圆的半径
+        startAngle: 0, //开始角度
+        bRotate: false, //false:停止;true:旋转
+        lotteryId: null, //中奖id
+        content: '', //中奖提示文言
+        content_first: '', //第一个文言框
+        content_second: '' //第二个文言框
+    };
+    var main_js = {
+        init: function() {
+            var _t = this;
+            $('.warming .btns').on('click', function() {
+                $('#mask').hide();
+                $(this).parent('.msg_box').hide();
+                main_js.get_loy_data(false);
+            });
+            $('.result .btn').click(function() {
+                // var name = $('#u_info .name');
+                var mobile = $('.result .mobile');
+                // var company = $('#u_info .company');
+                // (company.val() == '') && company.focus();
+                // (name.val() == '') && name.focus();
+                (mobile.val() == '') ? mobile.focus(): $.post(LOT_URL + '/lotteryRegister', JSON.stringify({
+                    code: code,
+                    openid: openid,
+                    lotteryCode: $('#lotteryCode .name').val(),
+                    phone: mobile.val(),
+                }), function(d) {
+                    $('.result').hide();
+                    $('.warming').children('p').text(d.result.content).end().show();
+                }).error(function(data, Status, statusText) {
+                    var err = toObject(data.responseText);
+                    err = typeof(err.err.msg) == 'string' ? err.err.msg : '网络错误，请刷新重试！';
+                    // $('.warming').show().children('p').text(err);
+                    mobile.val('').attr('placeholder', '请输入正确的手机号');
+                });
+            });
+            $('.pointer').click(function() {
+                if (turnplate.bRotate) return;
+                turnplate.bRotate = !turnplate.bRotate;
+                $('#lotteryCode .name').val('');
+                $('#lotteryCode,#mask').show();
+            });
+            $('#lotteryCode .btn').click(function() {
+                var _t = $('#lotteryCode .name');
+                if (_t.val() != '') {
+                    $('#lotteryCode,#mask').hide();
+                    // main_js.loy();
+                    $.post(LOT_URL + '/lottery', JSON.stringify({
+                        code: code,
+                        openid: openid,
+                        lotteryCode: _t.val()
+                    }), function(d) {
+                        if (d.err.err_code == 0) {
+                            $('#lotteryCode,#mask').hide();
+                            turnplate.lotteryId = d.result.lotteryId;
+                            turnplate.content = d.result.content;
+                            main_js.drawRouletteWheel();
+                            main_js.loy();
+                            $('#u_info .mobile').val(d.result.phone);
+                            descContent = d.result.share_content_win;
+                            shareTitle = d.result.share_title_win;
+                            main_js.share();
+                        } else {
+                            _t.val('').attr('placeholder', '请输入正确的抽奖码');
+                            // $('#lotteryCode,#mask').show();
+                        }
+                    }).error(function(data, Status, statusText) {
+                        var err = toObject(data.responseText);
+                        $('#lotteryCode,#mask').hide();
+                        err = typeof(err.err.msg) == 'string' ? err.err.msg : '网络错误，请刷新重试！';
+                        $('.warming').show().children('p').text(err);
+                        turnplate.bRotate = false;
+                    });
+                } else {
+                    _t.focus();
+                }
+            });
+            main_js.get_loy_data();
+        },
+        get_loy_data:function(isSetShare){
+            var _t = this;
+            // turnplate.restaraunts = ["10M免费流量包", "20M免费流量包", "20闪币 ", "30M免费流量包", "100M免费流量包", "2闪币"];
+            turnplate.colors = ["#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF", "#FFF4D6", "#FFFFFF"];
+            //动态添加大转盘的奖品与奖品区域背景颜色
+            $.get(LOT_URL + '/lottery', {
+                code: code,
+                openid: openid
+            }, function(data, textStatus, xhr) {
+                if (data.err.err_code == 0) {
+                    // turnplate.lotteryId = data.result.lotteryId;
+                    // turnplate.content = data.result.content;
+                    turnplate.content_first = data.result.content_first;
+                    turnplate.content_second = data.result.content_second;
+                    turnplate.restaraunts = [];
+                    $.each(data.result.items, function(i, v) {
+                        turnplate.restaraunts.push(v.name)
+                    });
+                    descContent = isSetShare ? data.result.share_content_init : descContent;
+                    shareTitle = isSetShare ? data.result.share_title_init : shareTitle;
+                    $('.no_choice p').html(data.result.content_first);
+                    $('.rules .title').html(data.result.content_second);
+                    $('.rules .con').html(data.result.content_third);
+                    if (data.result.is_lottery_max) {
+                        $('.no_choice').html(data.result.content_first);
+                        $('.pointer').click(function() {
+                            return false;
+                        });
+                    }
+                    //执行drawRouletteWheel()方法对转盘进行渲染
+                    _t.drawRouletteWheel(651, 325.5);
+
+                } else {
+                    $('.no_choice').children('p').text(data.err.msg).end().show();
+                }
+                _t.share();
+            }).error(function(data, Status, statusText) {
+                    var err = toObject(data.responseText);
+                    $('#lotteryCode,#mask').hide();
+                    err = typeof(err.err.msg) == 'string' ? err.err.msg : '网络错误，请刷新重试！';
+                    $('.warming').show().children('p').text(err);
+                });
+        },
+        rotateTimeOut: function() {
+            $('#wheelcanvas').rotate({
+                angle: 0,
+                animateTo: 2160,
+                duration: 8000,
+                callback: function() {
+                    alert('网络超时，请检查您的网络设置！');
+                }
+            });
+        },
+        //旋转转盘 item:奖品位置; txt：提示语;
+        rotateFn: function(item, txt) {
+            var angles = item * (360 / turnplate.restaraunts.length) - (360 / (turnplate.restaraunts.length * 2));
+            if (angles < 270) {
+                angles = 270 - angles;
+            } else {
+                angles = 360 - angles + 270;
+            }
+            $('#wheelcanvas').stopRotate();
+            $('#wheelcanvas').rotate({
+                angle: 0,
+                animateTo: angles + 1800,
+                duration: 8000,
+                callback: function() {
+                    // $('.result .prize').text(txt);
+                    $('.result .prize').html(turnplate.content);
+                    $('.result,#mask').show();
+                    turnplate.bRotate = !turnplate.bRotate;
+                }
+            });
+        },
+        // 抽奖
+        loy: function() {
+            var _t = this;
+            //获取随机数(奖品个数范围内)
+            // var item = rnd(1, turnplate.restaraunts.length);
+            var item = turnplate.lotteryId;
+            //奖品数量等于0,指针落在对应奖品区域的中心角度[252, 216, 180, 144, 108, 72, 36, 360, 324, 288]
+            _t.rotateFn(item, turnplate.restaraunts[item - 1]);
+        },
+        drawRouletteWheel: function(dia, radii) {
+            var _t = this;
+            var canvas = document.getElementById("wheelcanvas");
+            if (canvas.getContext) {
+                //根据奖品个数计算圆周角度
+                var arc = Math.PI / (turnplate.restaraunts.length / 2);
+                var ctx = canvas.getContext("2d");
+                //在给定矩形内清空一个矩形
+                ctx.clearRect(0, 0, dia, dia);
+                //strokeStyle 属性设置或返回用于笔触的颜色、渐变或模式  
+                ctx.strokeStyle = "#ffffff";
+                //font 属性设置或返回画布上文本内容的当前字体属性
+                ctx.font = '24px Microsoft YaHei';
+                for (var i = 0; i < turnplate.restaraunts.length; i++) {
+                    var angle = turnplate.startAngle + i * arc;
+                    ctx.fillStyle = turnplate.colors[i];
+                    ctx.beginPath();
+                    //arc(x,y,r,起始角,结束角,绘制方向) 方法创建弧/曲线（用于创建圆或部分圆）    
+                    ctx.arc(radii, radii, turnplate.outsideRadius, angle, angle + arc, false);
+                    ctx.arc(radii, radii, turnplate.insideRadius, angle + arc, angle, true);
+                    ctx.stroke();
+                    ctx.fill();
+                    //锁画布(为了保存之前的画布状态)
+                    ctx.save();
+
+                    //----绘制奖品开始----
+                    ctx.fillStyle = "#E5302F";
+                    var text = turnplate.restaraunts[i];
+                    var line_height = 30;
+                    //translate方法重新映射画布上的 (0,0) 位置
+                    ctx.translate(radii + Math.cos(angle + arc / 2) * turnplate.textRadius, radii + Math.sin(angle + arc / 2) * turnplate.textRadius);
+
+                    //rotate方法旋转当前的绘图
+                    ctx.rotate(angle + arc / 2 + Math.PI / 2);
+
+
+                    if (text.length > 4) { //奖品名称长度超过一定范围 
+                        var m = turnplate.restaraunts.length > 9 ? 4 : turnplate.restaraunts.length > 7 ? 5 : turnplate.restaraunts.length > 5 ? 8 : 10;
+                        text = text.substring(0, m) + "||" + text.substring(m);
+                        var texts = text.split("||");
+                        for (var j = 0; j < texts.length; j++) {
+                            ctx.fillText(texts[j], -ctx.measureText(texts[j]).width / 2, j * line_height);
+                        }
+                    } else {
+                        //在画布上绘制填色的文本。文本的默认颜色是黑色
+                        //measureText()方法返回包含一个对象，该对象包含以像素计的指定字体宽度
+                        ctx.fillText(text, -ctx.measureText(text).width / 2, 0);
+                    }
+                    //把当前画布返回（调整）到上一个save()状态之前 
+                    ctx.restore();
+                    //----绘制奖品结束----
+                }
+            }
+        },
+        share: function() {
+            var noncestr = makeNonceStr();
+            var timestamp = Date.parse(new Date()) / 1000 + '';
+            // CoursesStore.emit(CoursesStore.Events.REQUEST_START, action);
+            var lc = encodeURI(window.location);
+            $.ajax({
+                url: POST_URL + '/weixin/wxsign',
+                method: 'GET',
+                crossDomain: true,
+                contentType: "application/x-www-form-urlencoded",
+                data: {
+                    url: lc,
+                    nonceStr: noncestr,
+                    timestamp: timestamp,
+                    code: code,
+                    openid: openid
+                },
+                dataType: 'json',
+                success: function(data) {
+                    if (data.err) {
+                        console.log('doGET_ORDER', data.err);
+                        // CoursesStore.emit(CoursesStore.Events.REQUEST_END, action);
+                        return;
+                    }
+                    if (data && data.result) {
+                        if (wx) {
+                            wx.ready(function() {
+                                wx.hideAllNonBaseMenuItem();
+                                wx.showMenuItems({
+                                    menuList: [
+                                            'menuItem:profile',
+                                            'menuItem:addContact',
+                                            'menuItem:favorite',
+                                            'menuItem:share:appMessage',
+                                            'menuItem:share:timeline'
+                                        ] // 要显示的菜单项，所有menu项见附录3
+                                });
+                                var imgUrl = window.location.origin + _url + "/img/event/a1_2.jpg",
+                                    // descContent = "要做就做最有力度的活动，我们不玩虚的！",
+                                    // shareTitle = "新年礼——让铂略君陪你去看贺岁电影",
+                                    appid = "wx340b3ed76d012992";
+
+                                wx.onMenuShareTimeline({
+                                    title: shareTitle, // 分享标题
+                                    link: lc, // 分享链接
+                                    imgUrl: imgUrl // 分享图标
+
+                                });
+                                wx.onMenuShareAppMessage({
+                                    title: shareTitle, // 分享标题
+                                    desc: descContent, // 分享描述
+                                    link: lc, // 分享链接
+                                    imgUrl: imgUrl // 分享图标
+                                });
+                            });
+                            wx.config({
+                                debug: false,
+                                appId: 'wx340b3ed76d012992',
+                                nonceStr: noncestr,
+                                timestamp: timestamp,
+                                signature: data.result.signature,
+                                jsApiList: [
+                                    'onMenuShareTimeline',
+                                    'onMenuShareAppMessage',
+                                    'hideOptionMenu',
+                                    'showOptionMenu',
+                                    'hideMenuItems',
+                                    'showMenuItems',
+                                    'hideAllNonBaseMenuItem',
+                                    'showAllNonBaseMenuItem'
+                                ]
+                            });
+                            wx.error(function(res) {
+                                alert(res.errMsg);
+                            });
+                        }
+                    }
+                    // CoursesStore.emit(CoursesStore.Events.REQUEST_END, action);
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error(jqXHR, textStatus, errorThrown.toString());
+                    // CoursesStore.emit(CoursesStore.Events.REQUEST_END, action);
+                }
+            });
+        }
+    };
+
+    $(function() {
+        $.ajaxSetup({
+            crossDomain: true,
+            contentType: "application/json;charset=utf-8",
+            dataType: 'json',
+            statusCode: {
+                403: function() { //未登录及登陆失效已过
+                    localStorage.removeItem("credentials.code");
+                    localStorage.removeItem("credentials.openid");
+                    window.location=G_URL;
+                }
+            }
+        });
+        code = localStorage.getItem("credentials.code");
+        openid = localStorage.getItem("credentials.openid");
+        var _lurl = window.location.search.replace('?', '');
+        var code1 = _lurl.indexOf('code=')>-1 ? (_lurl.substring(_lurl.indexOf('code=') + 5, _lurl.indexOf('&'))) : '';
+        if (!code1) {
+            if (!code || !openid) {
+                (window.location = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx340b3ed76d012992&redirect_uri=' + encodeURI(G_URL) + '&response_type=code&scope=snsapi_userinfo&state=authredirect#wechat_redirect');
+            } else {
+                main_js.init();
+            }
+        } else {
+            if (!code || !openid) {
+                $.ajax({
+                    url: POST_URL + '/weixin/oauth',
+                    method: "GET",
+                    crossDomain: !0,
+                    contentType: "application/x-www-form-urlencoded",
+                    data: {
+                        code: code1
+                    },
+                    dataType: "json",
+                    success: function(c) {
+                        localStorage.removeItem("credentials.code");
+                        localStorage.removeItem("credentials.openid");
+                        if (c.result && c.result.openid && c.result.code) {
+                            localStorage.setItem("credentials.code", c.result.code);
+                            localStorage.setItem("credentials.openid", c.result.openid);
+                            window.location=G_URL;
+                            console.log('code==' + c.result.code + '---openid==' + c.result.openid);
+                        }
+                    },
+                    error: function(c) {
+                        console.dir(c);
+                        localStorage.removeItem("credentials.code");
+                        localStorage.removeItem("credentials.openid");
+                    }
+                });
+            } else {
+                main_js.init();
+            }
+        }
+    });
+
+    function toObject(a) {
+        return (new Function('return ' + a))();
+    };
+    function makeNonceStr() {
+        var text = "";
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        for (var i = 0; i < 5; i++) {
+            text += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        return text;
+    }
+    function rnd(n, m) {
+        var random = Math.floor(Math.random() * (m - n + 1) + n);
+        return random;
+    }
+    </script>
+</body>
+
+</html>

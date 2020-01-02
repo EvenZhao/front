@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>铂略直播体验</title>
+    <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="../img/favicon/apple-icon-72x72.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png" />
+    <meta name="theme-color" content="#41ABB9" />
+    <meta name="description" content="铂略财务培训专注于财务管理培训，课程涵盖财务分析、信用管理、成本控制、税务培训等，跨国企业在职财务总监担任讲师助财务人应对职业挑战。咨询电话:4006163899">
+    <meta name="keywords" content="铂略财务培训,财务培训,企业财务培训,税务培训,企业税务培训,财务管理,财务管理培训,企业财务管理,企业税务管理,财务培训课程 ,税务培训课程,财务分析,财务咨询,财务课程,财税培训" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+    <link rel="stylesheet" href="../css/live.min.css">
+</head>
+<body>
+    <script>
+        var userAgent = window.navigator.userAgent.toLowerCase();
+        if( !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(userAgent) ) {
+            jumpToPC(window.location.href)
+        }
+
+        function jumpToPC(url) {
+            var w3 = '';
+            if(url.indexOf('localhost') > -1 || url.indexOf('mb.bolue.cn/test') > -1) {
+                w3 = 'http://gc.bolue.cn/'
+            }else {
+                w3 = 'http://www.bolue.cn/'
+            }
+            var pcurl = w3 + 'lives/invite/' + url.substring(url.indexOf('liveInvite') + 11) + '?fromMB=1';
+            window.location.href = pcurl;
+        }
+    </script>
+    <div class="p_live_invite">
+        <input type="hidden" id="resourceId"/>
+        <div class="live_info">
+            <p class="info_tit"></p>
+            <div class="live_tit"></div>
+            <div class="live_time">
+                <i></i><span id="live_time"></span>
+            </div>
+        </div>
+        <div class="live_login">
+            <p class="login_tit">直播课体验入口</p>
+            <div class="login_ul">
+                <div class="input_li">
+                    <div class="ipt_box input_long phone">
+                        <i class="ico"></i>
+                        <input autocomplete="off" type="text" placeholder="手机号" value="" onblur="G.live_invite.checkValid()"/>
+                    </div>
+                    
+                </div>
+                <div class="input_li">
+                    <div class="ipt_box input_short sms_code">
+                        <i class="ico"></i>
+                        <input autocomplete="off" type="text" placeholder="验证码" onblur="G.live_invite.checkValid()"/>
+                        <input type="button" class="get_phone_code" value="获取验证码"/>
+                    </div>
+                </div>
+            </div>
+            <div class="operate">
+                <span class="btn">进入直播间</span>
+            </div>
+            <div class="login_tips">
+                <p class="open_time">直播将在开课前<span class="c_org">15分钟</span>开启</p>
+                <div class="countDownBox" style="display: none">
+                    直播即将开启<p class="countDown"><span>00</span>:<span>00</span></p>
+                </div>
+                <p class="voiceCall">收不到短信？<span onclick="sendSmsCode(1)">点击获取语音验证码</span></p>
+            </div>
+        </div>
+        <div class="more_info">
+            <p>了解更多课程详情</p>
+            <p>请拨打400-616-3899（周一至周五08:30-18:00）</p>
+        </div>
+
+        <div id="alert" class='alertTips cont'></div>
+        <div id="alertTips" class='alert_tips'>
+            <div class="main">
+                <div class="tit">您尚未获得该直播课的体验权限</div>
+                <div class="cont">我们将在<span class="time">5</span>秒后为您跳转该直播详情页</div>
+            </div>
+            <div class="operate"><a href="#" class="btn">立即跳转</a></div>
+        </div>
+        <div id="captcha" class="captcha"></div>
+        <div id="mask"> </div>
+        <script id="accountList_tmpl" type="text/x-jquery-tmpl">
+            <div class="li{{if $index  == 0}} curr{{/if}}" data-uuid="{{= uuid}}">
+                <div class="img">
+                    <img src="{{= photo}}">
+                </div>
+                <div class="right_ovfl mt10">
+                    <div class="right_ovfl"><div class="name">{{= nickName}}</div><span class="type">{{if type==0}}个人账号{{else type==1}}员工账号{{else type==2}}企业账号{{else type==3}}集团账号{{else type==4}}企业管理账号{{/if}}</span>{{if $index  == 0}}<span class="tuijian">推荐登录</span>{{/if}}</div>
+                    <div class="company">{{= company}}</div>
+                </div>
+            </div>
+        </script>
+        <div id="accountList" class="account_list">
+            <div class="tips">该手机号对应多个账号，请选择</div>
+            <div class="mt10 list">
+                <div class="li">
+                    <div class="img">
+                        <img src="http://static.xuecima.com/logo/defaultPhoto.png">
+                    </div>
+                    <div class="right_ovfl mt10">
+                        <div><div class="name">0000</div><span class="type">会员账号</span><span class="tuijian">推荐登录</span></div>
+                        <div class="company">铂略企业管理咨询(上海)有限公司</div>
+                    </div>
+                </div>
+            </div>
+            <div class="sure">
+                <button>选好了，确认登录</button>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        window.NVC_Opt = {
+            //无痕配置 && 滑动验证、刮刮卡、问答验证码通用配置
+            // appkey: 'CF_APP_1',
+            // scene: 'nvc_register_h5'
+            appkey: 'FFFF0N0N000000008299'
+            , scene: 'nvc_message_h5'
+            , isH5: true
+            , popUp: false
+            , renderTo: '#captcha'
+            , nvcCallback: function (data) {
+                // data为getNVCVal()的值，此函数为二次验证滑动或者刮刮卡通过后的回调函数
+                // data跟业务请求一起上传，由后端请求AnalyzeNvc接口，接口会返回100或者900
+                reqVerifyCodeNew(data);
+                $('#captcha,#mask').hide();
+            },
+            // trans字段值    模拟效果  "nvcCode": 400, "key1": "code300" 
+            trans: {}
+            , language: "cn",
+            //滑动验证长度配置
+            customWidth: 300,
+            //刮刮卡配置项
+            width: 300
+            , height: 100
+            , elements: [
+                '//img.alicdn.com/tfs/TB17cwllsLJ8KJjy0FnXXcFDpXa-50-74.png'
+                , '//img.alicdn.com/tfs/TB17cwllsLJ8KJjy0FnXXcFDpXa-50-74.png'
+            ]
+            , bg_back_prepared: '//img.alicdn.com/tps/TB1skE5SFXXXXb3XXXXXXXXXXXX-100-80.png'
+            , bg_front: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABQCAMAAADY1yDdAAAABGdBTUEAALGPC/xhBQAAAAFzUkdCAK7OHOkAAAADUExURefk5w+ruswAAAAfSURBVFjD7cExAQAAAMKg9U9tCU+gAAAAAAAAAIC3AR+QAAFPlUGoAAAAAElFTkSuQmCC'
+            , obj_ok: '//img.alicdn.com/tfs/TB1rmyTltfJ8KJjy0FeXXXKEXXa-50-74.png'
+            , bg_back_pass: '//img.alicdn.com/tfs/TB1KDxCSVXXXXasXFXXXXXXXXXX-100-80.png'
+            , obj_error: '//img.alicdn.com/tfs/TB1q9yTltfJ8KJjy0FeXXXKEXXa-50-74.png'
+            , bg_back_fail: '//img.alicdn.com/tfs/TB1w2oOSFXXXXb4XpXXXXXXXXXX-100-80.png'
+            , upLang: {
+                "cn": {
+                    _ggk_guide: "请在屏幕上滑动，刮出两面盾牌"
+                    , _ggk_success: "恭喜您成功刮出盾牌<br/>继续下一步操作吧"
+                    , _ggk_loading: "加载中"
+                    , _ggk_fail: ['呀，盾牌不见了<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                    , _ggk_action_timeout: ['我等得太久啦<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                    , _ggk_net_err: ['网络实在不给力<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                    , _ggk_too_fast: ['您刮得太快啦<br/>请', "javascript:NoCaptcha.reset()", '再来一次', '或', "https://mb.bolue.cn/PgAdvice?token=%TOKEN", '反馈问题']
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
+    <script src="../js/live.min.js"></script>
+    <!--引入guide.js前必须已定义NVC_Opt。-->
+    <script src="//g.alicdn.com/sd/nvc/1.1.112/guide.js"></script>
+    <script>
+        TDAPP = { onEvent: function() {} };
+        var o = <%- data %>;
+        $(function() {
+            G.live_invite.init(o)
+
+            var noncestr = makeNonceStr();
+            var timestamp = Date.parse(new Date())/1000 + '';
+            // CoursesStore.emit(CoursesStore.Events.REQUEST_START, action);
+            var lc = document.location.href.split('#')[0];
+            var w3 = '';
+            if(lc.indexOf('localhost') > -1 || lc.indexOf('mb.bolue.cn/test') > -1) {
+                w3 = 'http://apim.bolue.cn/test'
+            }else {
+                w3 = 'https://apim.bolue.cn/'
+            }
+            // 获取header请求信息
+            var header = {};
+            if (o && o.bolueclient) { //ios android
+                header = target.header;
+            } else { //wechat
+                // o.bolueclient = G.getCookie('bolueClient');
+                header.bolueclient = G.live_invite.opt.bolueclient;
+                header.boluever = G.live_invite.opt.boluever;
+                header.myauth = G.live_invite.opt.myauth;
+            }
+            // 权限校验，获取数据
+            $.ajaxSetup({
+                beforeSend: function(xhr, ajaxObj) {
+                    if (ajaxObj.url.indexOf('bolue.cn/') > -1) {
+                        xhr.setRequestHeader('bolueClient', header.bolueclient);
+                        xhr.setRequestHeader('bolueVer', header.boluever);
+                        xhr.setRequestHeader('MyAuth', header.myauth);
+                    }
+                }
+            });
+            jQuery.ajax({
+                url: w3 + '/v2/wxsign',
+                method: 'GET',
+                crossDomain: true,
+                contentType: "application/x-www-form-urlencoded",
+                data: {
+                    url: lc,
+                    nonceStr: noncestr,
+                    timestamp: timestamp
+                },
+                dataType: 'json',
+                success: function(data){
+                    if(data.err){
+                        console.log('doGET_ORDER', data.err);
+                        // CoursesStore.emit(CoursesStore.Events.REQUEST_END, action);
+                        return;
+                    }
+                    if(data && data.result) {
+                        if(wx){
+                            wx.ready(function(){
+                                wx.onMenuShareAppMessage(share_config);
+                                wx.onMenuShareTimeline(share_config);
+                            });
+                            wx.error(function(res){
+                                // alert(res.errMsg);
+                            });
+                            wx.config({
+                                debug: false,
+                                appId: 'wx340b3ed76d012992',
+                                nonceStr: noncestr,
+                                timestamp: timestamp,
+                                signature: data.result.signature,
+                                jsApiList: [
+                                    'onMenuShareTimeline',
+                                    'onMenuShareAppMessage',
+                                    'hideOptionMenu',
+                                    'showOptionMenu',
+                                    'hideMenuItems',
+                                    'showMenuItems',
+                                    'hideAllNonBaseMenuItem',
+                                    'showAllNonBaseMenuItem'
+                                ]
+                            });
+                        }
+                    }
+                    // CoursesStore.emit(CoursesStore.Events.REQUEST_END, action);
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    console.error(jqXHR, textStatus, errorThrown.toString());
+                    // CoursesStore.emit(CoursesStore.Events.REQUEST_END, action);
+                }
+            });
+        });
+        //# AJAX comm funcs ################
+        function makeNonceStr() {
+            var text = "";
+            var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            for( var i=0; i < 5; i++ ) {
+                text += possible.charAt(Math.floor(Math.random() * possible.length));
+            }
+            return text;
+        }
+
+        function sendSmsCode(flag) {    //flag:0短信 1语音
+            if(G.live.phoneValid($('.input_li .ipt_box.phone input').val())) {
+                if(flag == 0) {
+                    $('.get_phone_code').addClass('disabled');
+                    o.isVoice = false
+                }else {
+                    o.isVoice = true
+                }
+                callCheckFn()
+            }else {
+                G.show_alert('请输入正确的手机格式')
+            }
+            
+        }
+
+        function callCheckFn() {
+            // document.getElementById('markTest').innerHTML = 1 + JSON.stringify(dataObj)
+            $.ajax({
+                type: 'GET'
+                , url: G.opt.post_url + G.opt.basePath + '/v2/getOutsideServiceStatus/?random=' + Math.random()
+                , headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                    , bolueClient: 'wap'
+                    , bolueVer: o.bolueVer
+                    , UUIDIMEI: o.UUIDIMEI
+                    , MyAuth: o.myAuth
+                    , devToken: o.devToken
+                }
+                , data: {
+                    scd: 'ssyz2'
+                }
+                , success: function (data) {
+                    var params;
+                    if (data && data.result) {
+                        params = getNVCVal();
+                    } else {
+                        params = null;
+                    }
+                    reqVerifyCodeNew(params)
+                }
+                , error: function (err) {
+                    $('.get_phone_code').removeClass('disabled');
+                    G.show_alert('网络实在不给力，请再来一次')
+                }
+
+            })
+
+        }
+
+        function reqVerifyCodeNew(params) {
+            // document.getElementById('markTest').innerHTML = 2 + JSON.stringify(headersDatas);
+            $.ajax({
+                type: 'POST'
+                , url: G.opt.post_url + G.opt.basePath + '/v2/reqVerifyCodeNew/?random=' + Math.random()
+                , headers: {
+                    'Content-Type': 'application/json;charset=utf-8'
+                    , bolueClient: 'wap'
+                    , bolueVer: o.bolueVer
+                    , UUIDIMEI: o.UUIDIMEI
+                    , MyAuth: o.myAuth
+                    , devToken: o.devToken
+                }
+                , data: JSON.stringify({
+                    phoneOrEmail: $('.input_li .ipt_box.phone input').val()
+                    , verifyType: 1
+                    , isVoice: o.isVoice
+                    , isLiveInvite: true
+                    , nvcVal: params ? decodeURIComponent(params) : null
+                })
+                , success: function (data) {
+                    // document.getElementById('markTest').innerHTML = 'success' + JSON.stringify(data)
+                    if (data && data.err) {
+                        G.show_alert(data.err);
+                        $('.get_phone_code').val('获取验证码').removeClass('disabled')
+                    } else {
+                        if (data.result != true) {
+                            handleALiVaptCha(data.result)
+                        } else {
+                            $('#captcha,#mask').hide();
+                            if(o.isVoice) {
+                                G.show_alert('语音验证电话拨打中...')
+                            }else {
+                                freezeTime = 60
+                                timer = setInterval(()=>{
+                                    if( freezeTime > 0 ){
+                                    var count_num = freezeTime
+                                    if (count_num == 30 && !o.isVoice) { //倒计时30秒的时候显示语音验证码
+                                        $('.login_tips .voiceCall').show()
+                                    }
+                                        $('.get_phone_code').val('还剩' + (freezeTime--) + 's')
+                                    } else {
+                                        clearInterval(timer);
+                                        $('.get_phone_code').val('重新发送').removeClass('disabled')
+                                    }
+                                }, 1000);
+                            }
+                        }
+                    }
+                }
+                , error: function (err) {
+                    $('.get_phone_code').val('获取验证码').removeClass('disabled')
+                }
+
+            })
+
+        }
+
+        function handleALiVaptCha(code) {
+            if (code == 400) {
+                //唤醒滑动验证
+                getNC().then(function () {
+                    NoCaptcha.upLang('cn', {
+                        'LOADING': "加载中...", //加载
+                        'SLIDER_LABEL': "请向右滑动验证", //等待滑动
+                        'CHECK_Y': "验证通过", //通过
+                        'ERROR_TITLE': "哎呀，出错了，点击<a href=\"javascript:NoCaptcha.reset()\">刷新</a>再来一次", //拦截
+                        'FEEDBACK_URL': 'https://mb.bolue.cn/PgAdvice'
+                        , 'CHECK_N': "验证未通过", //准备唤醒二次验证
+                        'OVERLAY_INFORM': "经检测你当前操作环境存在风险，请输入验证码", //二次验证
+                        'TIPS_TITLE': "验证码错误，请重新输入", //验证码输错时的提示
+                    });
+                    _nvc_nc.reset();
+                });
+                $('#captcha,#mask').show();
+            } else if (code == 600) {
+                //唤醒刮刮卡
+                getSC().then(function () { });
+                $('#captcha,#mask').show();
+            } else if (code == 700) {
+                //唤醒问答验证码
+                getLC();
+                $('#captcha,#mask').show();
+            } else if (code == 100 || code == 200) {
+                //注册成功
+                nvcReset();
+                $('#captcha,#mask').hide();
+            } else if (code == 800 || code == 900) {
+                //直接拦截
+                nvcReset();
+                $('#captcha,#mask').hide();
+                 G.show_alert('获取验证码失败，建议稍后再试');
+                let params = JSON.stringify({ key: 'error', value: '获取验证码失败，建议稍后再试' })
+                if (o.bolueClient == 'ios') {
+                    window.webkit.messageHandlers.appModel.postMessage(params)
+                } else if (o.bolueClient == 'android'){
+                    window.postMessage(params)
+                }
+            }
+        }
+    </script>
+    <!-- <script src="https://jic.talkingdata.com/app/h5/v1?appid=F015102E13854BA2947E2C84924B4051&vn=2.0&vc=2.0&td_channelid=polyvPlay"></script> -->
+    
+
+</body>
+
+</html>

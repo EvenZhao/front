@@ -1,0 +1,28 @@
+.fix-image-gallary {
+	height: 100%;
+}
+.HeadCarousel {
+    padding-bottom: @gap;
+    width: 100%;
+    background-color: @color-pg-bg;
+    .image-gallery {
+        background-color: @color-black;
+        .fix-image-gallary();
+        .image-gallery-content {
+            .fix-image-gallary();
+            .image-gallery-swipe {
+                .fix-image-gallary();
+                .image-gallery-slides {
+                    .fix-image-gallary();
+                }
+            }
+        }
+    }
+    .image-gallery-bullets {
+        text-align: left;
+        bottom: @gap;
+		.image-gallery-bullets-container {
+	        padding-left: 8px;
+		}
+    }
+}

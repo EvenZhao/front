@@ -1,0 +1,169 @@
+.PgLogin{//无密码登录 登录
+  height: 100%;
+  width: 100%;
+  background-color: @gray-lighter;
+  .tel-phone{
+    height: 65px;
+    width: 100%;
+    background-color: white;
+    // border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-color: #f3f3f3;
+    border-style: solid;
+    border-left: none;
+    // border-top: none;
+    margin-top: 10px;
+    .tel-div{
+      position: relative;
+      top: 22px;
+      left: 10px;
+      color: #e5e5e5;
+      :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: @active-color;
+       }
+
+    	::-moz-placeholder { /* Mozilla Firefox 19+ */
+    	    color: @active-color;
+    	}
+
+    	input:-ms-input-placeholder {
+    	    color: @active-color;
+    	    font-size: 12px;
+    	}
+
+    	input::-webkit-input-placeholder {
+    	    font-size: 12px;
+    	}
+      input{
+        position: absolute;
+        width: 85%;
+        height: 20px;
+        margin-left: 10px;
+        #field1::-webkit-input-placeholder { color:#00f;font-size: 16px}
+      }
+    }
+  }
+  .login-code{
+    height: 65px;
+    width: 100%;
+    background-color: white;
+    // border-top-width: 1px;
+    border-bottom-width: 1px;
+    border-color: #f3f3f3;
+    border-style: solid;
+    border-left: none;
+    border-top: none;
+    .pass-div{//密码登录
+      position: relative;
+      top: 22px;
+      left: 10px;
+      color: #e5e5e5;
+      // width: 100%;
+      :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: @active-color;
+       }
+
+      ::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: @active-color;
+      }
+
+      input:-ms-input-placeholder {
+          color: @active-color;
+          font-size: 12px;
+      }
+
+      input::-webkit-input-placeholder {
+          font-size: 12px;
+      }
+      input{
+        position: absolute;
+        width: 85%;
+        height: 20px;
+        margin-left: 10px;
+        #field1::-webkit-input-placeholder { color:#00f; }
+      }
+      .pass-text{
+        // float: left;
+        width: 100%;
+      }
+    }
+    .code-div{//验证码登录
+      position: relative;
+      top: 22px;
+      left: 10px;
+      color: #e5e5e5;
+      :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+        color: @active-color;
+       }
+
+      ::-moz-placeholder { /* Mozilla Firefox 19+ */
+          color: @active-color;
+      }
+
+      input:-ms-input-placeholder {
+          color: @active-color;
+          // font-size: 16px;
+      }
+
+      input::-webkit-input-placeholder {
+          // font-size: 16px;
+      }
+      input{
+        position: absolute;
+        width: 50%;
+        height: 20px;
+        margin-left: 10px;
+        #field1::-webkit-input-placeholder { color:#00f; }
+      }
+      .code-text{
+        float: left;
+      }
+      .code{
+        width: 95px;
+        height: 35px;
+        text-align:center;
+        line-height:35px;
+        font-size: 16px;
+        color: #6f6f6f;
+        float: left;
+        position: absolute;
+        right: 20px;
+        background-color: @gray-lighter;
+        border-radius: 4px;
+      }
+    }
+  }
+  .denglu-div{//登录按钮样式Div
+    text-align: center;
+    .button{
+      background-color: #2196f3;;
+      height: 45px;
+      width: 80%;
+      text-align: center;
+      text-align: center;
+      line-height: 40px;
+      color: white;
+      font-size: 16px;
+      margin-left: 32px;
+      margin-top: 40px;
+      border-radius: 4px;
+    }
+    button{
+      color: white;
+    }
+  }
+  .login-register{
+      color: #6f6f6f;
+      width: 80%;
+      font-size: 16px;
+      margin-left: 42px;
+      margin-top: 20px;
+      .login{
+        width: 80%;
+        float: left;
+      }
+      .register{
+
+      }
+  }
+}

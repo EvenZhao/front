@@ -1,0 +1,16 @@
+{
+  "webcredentials": {
+    "apps": [
+      "65VYE2ET7N.com.linked-f.app"
+    ]
+  },
+  "applinks": {
+    "apps": [],
+    "details": [ 
+      {
+        "appID": "65VYE2ET7N.com.linked-f.app", 
+        "paths": [ "*" ]
+      }
+    ] 
+  }
+}

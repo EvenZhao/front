@@ -1,0 +1,149 @@
+@import 'HeadCarousel.less';
+
+//---defauult
+body{
+	font-family: @font-family-mine;
+	background-color: #f4f4f4;
+	width: 100%;
+	overflow: hidden;
+	// height: 100%;
+	a {
+		text-decoration: none;
+		&:hover, &:visited, &:link {
+			text-decoration: none;
+		}
+	}
+	input[type="checkbox"]:checked{
+		background-color: @brand-primary;
+	}
+}
+#react{
+	width: 100%;
+	height: 100%;
+	overflow-x: hidden;
+	background-color: @color-pg-bg;
+}
+.cross-out-txt() {
+	color: lighten(@gray-light, 20%);
+	text-decoration: line-through;
+}
+.loading-mask {
+	position: fixed;
+	background-color: @gray-darker;
+	color: @brand-primary;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	opacity: 0.7;
+	text-align: center;
+	.fa {
+		line-height: 1300%;
+	}
+}
+
+.splash-screen{
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	margin: auto;
+	padding: auto;
+	position: absolute;
+	z-index: 9999;
+	background-color: @gray-light;
+	opacity:0.7;
+	text-align: center;
+	font-size: @font-size-base * 4;
+	color: @brand-primary;
+	span{
+		line-height: 55rem;
+		vertical-align: middle;
+	}
+}
+.highlight{
+	background-color: @highlight-color;
+	color: #c00;
+}
+.searchHighlight{
+	font-size: 15px;
+	color: #FF0000;
+}
+
+.qaTittle textarea::-webkit-input-placeholder,
+.qaTittle textarea::-moz-placeholder,
+.qaTittle textarea::-moz-placeholder,
+.qaTittle textarea::-ms-input-placeholder {
+	 color:#333;
+	 font-size: 18px;
+ }
+.ellipsis(){
+  // width: 250px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.truncate {
+	.ellipsis();
+}
+
+.indent() {
+	text-indent: @font-size-base * 2;
+}
+.center-text{
+	text-align: center;
+}
+.gp-pull-left{
+	padding-left: 0px !important;
+	margin-left: 0px !important;
+}
+.MyManel {
+	background: @body-bg;
+}
+
+.clearfix {
+	zoom: 1;
+}
+.clearfix:after{
+	display: block;
+	font-size: 0;
+	content: '';
+	clear: both;
+	height: 0;
+	line-height: 0;
+}
+
+/*手势验证码 vaptcha */
+
+.vaptcha-init-main {
+	display: table;
+	width: 100%;
+	height: 100%;
+	background-color: #EEEEEE;
+}
+​
+.vaptcha-init-loading {
+	display: table-cell;
+	vertical-align: middle;
+	text-align: center
+}
+​
+.vaptcha-init-loading>a {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border: none;
+}
+​
+.vaptcha-init-loading>a img {
+	vertical-align: middle
+}
+​
+.vaptcha-init-loading .vaptcha-text {
+	font-family: sans-serif;
+	font-size: 12px;
+	color: #CCCCCC;
+	vertical-align: middle
+}

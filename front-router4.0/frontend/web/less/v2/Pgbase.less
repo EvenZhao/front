@@ -1,0 +1,37 @@
+.PgAdviceInput{
+  :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: '#999999';
+    font-size: 14px;
+    margin-left: 12px;
+   }
+
+  ::-moz-placeholder { /* Mozilla Firefox 19+ */
+      color: '#999999';
+      font-size: 14px;
+      margin-left: 12px;
+  }
+
+  input:-ms-input-placeholder {
+      color: '#999999';
+      font-size: 14px;
+      margin-left: 12px;
+  }
+
+  input::-webkit-input-placeholder {
+      font-size: 14px;
+      margin-left: 12px;
+      color: '#999999';
+  }
+}
+.PgAdviceTextarea{
+  input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    font-size: 14px;
+    margin-left: 12px;
+    color: '#999999';
+  }
+  input:-moz-placeholder, textarea:-moz-placeholder {
+    font-size: 14px;
+    margin-left: 12px;
+    color: '#999999';
+  }
+}

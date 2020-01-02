@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta http-equiv="Access-Control-Allow-Origin" content="*" />
+    <title>铂略财课直播间</title>
+    <link rel="apple-touch-icon" type="image/png" sizes="72x72" href="../img/favicon/apple-icon-72x72.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="../img/favicon/favicon-16x16.png" />
+    <meta name="theme-color" content="#41ABB9" />
+    <meta name="description" content="铂略财务培训专注于财务管理培训，课程涵盖财务分析、信用管理、成本控制、税务培训等，跨国企业在职财务总监担任讲师助财务人应对职业挑战。咨询电话:4006163899">
+    <meta name="keywords" content="铂略财务培训,财务培训,企业财务培训,税务培训,企业税务培训,财务管理,财务管理培训,企业财务管理,企业税务管理,财务培训课程 ,税务培训课程,财务分析,财务咨询,财务课程,财税培训" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="full-screen" content="yes" />
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <link rel="stylesheet" href="../css/live.min.css">
+</head>
+
+<body class="p_live">
+    <div id="navG" class="nav relatv"><span class="abs back"><img height="20" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAsCAYAAAB7aah+AAAABGdBTUEAALGPC/xhBQAAAQhJREFUWAnV19kNgzAMBmDSjpE1GIDNSjdr35mDNSh/K6wgcvl6qKWghMMffoozDP8c4zjOGGkN93RhMQewbdtjzzXFGMO6ri/kNYUSBLkRhIXfWn/NIJQ0hPC80UoxqSFHWnVFLQTVLMsyq6BeBFWJIQ4ihriICJIgbEiKsCAN0g1pkS7IAmlCVkgVskSKkDWShTyQC+SFnCBPhCBvBJDJxodErfj2DGgg0EjsL0+FD2jvLzxv3qbmxBsjCL/kiZ0gT+wCeWFZyAMrQtZYFbLEmpAV1gVZYN2QFmNBGowNSTERJMHEEBdTQRxMDfVg+2HsbQLVsOPEZwblsAPBM5dAs4PhkryV9ANO+jBuBAE9dgAAAABJRU5ErkJggg==" alt=""/></span>
+        <div class="tit"></div>
+    </div>
+    <div id="player" class="live_player"></div>
+    <div id="chatParts" class="live_messbox2">
+        <ul class="tabs">
+            <li class="li curr">直播大厅</li>
+            <li class="li">我的互动</li>
+        </ul>
+        <div class="page_list">
+            <ul class="live_ul2 ul" id="publicChat">
+                <div class='no_data'><img src="https://mb.bolue.cn/img/v2/icons/null@2x.png" alt="暂无相关数据" />
+                    <p>暂无信息~</p>
+                </div>
+            </ul>
+            <ul class="live_ul2 live_ul3 ul hide" id="myQA">
+                <div class='no_data'><img src="https://mb.bolue.cn/img/v2/icons/null@2x.png" alt="暂无相关数据" />
+                    <p>暂无提问~</p>
+                </div>
+            </ul>
+        </div>
+    </div>
+    <div id="liveAsk" class="live_ask relatv">
+        <i class="ico close">×</i>
+        <div class="title">
+            现场提问<span class="abs btn c_blue" id="submitPubChat">提交</span>
+        </div>
+        <div class="live_ques relatv txt_num_evt evt_txt_num" data-str='0' data-limit='400'>
+            <textarea rows="" cols="" id="pub_message_textarea" autocomplete="false" onblur="window.scrollTo(0,0)" placeholder="请输入您的提问"></textarea>
+        </div>
+    </div>
+    <div id="gonggao" class="gonggao">
+        <div class="title">公告</div>
+        <div class="cont">大家好，我们将在<span class="cTime"></span>正式开始直播，<br />请稍作等待，谢谢。看不到画面？<br />联系我们：400-616-3899及时帮您解决。</div>
+        <a href="javascript:;" class="c_blue close mod_grid">知道了</a>
+    </div>
+    <div id="forChat" class="forChat">现场提问</div>
+    <div class="video_mask live_comm" id="LiveComment">
+        <i class="ico close">×</i>
+        <div class="main_c">
+            <p class="label">为课程评分</p>
+            <div class="pingfen">
+                <div class="pingjia">
+                    <label class="star null"></label>
+                    <label class="star null"></label>
+                    <label class="star null"></label>
+                    <label class="star null"></label>
+                    <label class="star null"></label>
+                    <label class="pingfenC"><i id="pingfenC">0</i>分</label>
+                </div>
+            </div>
+            <div class="pingfen">
+                <div class="miaoshu_box">
+                    <textarea class="miaoshu" onblur="window.scrollTo(0,0)" placeholder="请输入对课程的评价"></textarea>
+                </div>
+            </div>
+            <div class="mt10 clearfix">
+                <span class="btn" onclick="G.live.add_mark(this);">提交评价</span>
+            </div>
+        </div>
+    </div>
+    <div id="alert" class='alertTips cont'></div>
+    <div id="mask"> </div>
+    <input type="hidden" id="resourceId" value="">
+    <input type="hidden" id="accountId" value="">
+    <script id="publicChat_tmpl" type="text/x-jquery-tmpl">
+        <li id="{{= id}}" class="li{{if flag==0}} answer{{/if}}">
+                {{if flag==1}}<p class="time">{{= G.live.fmt_time(time)}}</p><p class="uName"><span class="tag">问题</span>{{= G.live.clearName(user.nick)}}</p>{{/if}}
+                <p class="cont{{if flag==1}} arrow{{/if}}">{{if flag==0}}<span class="c_blue fbold ft12">讲师回复：</span>{{/if}}{{if content}}{{= $data.content}}{{else}}{{= values.join(',')}}{{/if}}</span></p>
+            </li>
+        </script>
+    <script id="myQA_tmpl" type="text/x-jquery-tmpl">
+        <li id="{{= id}}" class="li {{= cls}}">
+                <p class="time">{{= G.live.fmt_time(time)}}</p>
+                <p class="uName">{{= G.live.clearName(user.nick)}}</p>
+                <span class="cont arrow " style="margin-left:0px"><span class="{{if 'right' == cls}}alginL{{/if}}">{{= content}}</span></span>
+            </li>
+        </script>
+    <script type="text/javascript" src="../js/jquery.tmpl.min.js"></script>
+    <script src="//player.polyv.net/livescript/liveplayer.js"></script>
+    <script src="//livestatic.videocc.net/v_258/assets/wjs/dist/socket.io.min.js"></script>
+    <script src="../js/live.min.js"></script>
+    <script>
+    TDAPP = { onEvent: function() {} };
+    var o = <%- data %>;
+    if (o && o.bolueclient == 'ios') {
+        // 写入返回按钮，用于ios
+        $('#navG').show().on('click',function(){ window.webkit.messageHandlers.goBack.postMessage('1')});
+    }
+    function s2j_onInitOver() {
+        if (o && (o.bolueclient == 'android' || o.bolueclient == 'ios') && $('#player .plwrap').length > 1) {
+            var html = $('#player .plwrap:last').html();
+            $('#player').html($('#player .plwrap:last').prop("outerHTML"));
+        }
+    }
+    $(function() {
+        G.live.getData({
+            header: o,
+            callback: function(o) {
+                $('#accountId').val(o.accountId);
+                G.live.newPlay(o);
+                G.for_tabs(function(_t) {
+                    _t.length > 0 && _t.removeClass('redTips')
+                });
+                G.txt_num_evt(); //字数统计
+                TDAPP && TDAPP.onEvent('进入直播间', '人员信息', o);
+            }
+        })
+    });
+    </script>
+    <script src="https://jic.talkingdata.com/app/h5/v1?appid=F015102E13854BA2947E2C84924B4051&vn=2.0&vc=2.0&td_channelid=polyvPlay"></script>
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+.PgDetail {
+    height: 100%;
+    overflow: hidden;
+    .weui_panel {
+        padding: @gap;
+    }
+    .HeadCarousel {
+        height: 30%;
+    }
+    .weui_tab {
+        position: absolute;
+        bottom: 0px;
+        height: 70%;
+        width: 100%;
+        .weui_tabbar {
+            background-color: @color-white;
+            &:before {
+                border-top: 4px solid @active-color;
+            }
+            &:after {
+                border-top: 1px solid @color-pg-bg;
+            }
+        }
+    }
+    .BottomBarBtGroup {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        .price-section {
+            width: 70%;
+            display: flex;
+            align-items: flex-start;
+            padding-left: @gap;
+            .price_ori {
+                padding-right: @gap;
+                text-decoration: line-through;
+                color: @gray-light2;
+                display: flex;
+            }
+            .price {
+                color: @brand-danger;
+            }
+        }
+        .bt-buy {
+            height: 100%;
+        	width: 30%;
+        	marginLeft: 0px;
+        	marginRight: 0px;
+        }
+    }
+}
