@@ -15,7 +15,7 @@ import Carousel from '../components/Carousel'
 import LoadFailure from '../components/LoadFailure'
 import Guide from '../components/Guide'
 import Common from '../Common'
-import { NONAME } from 'dns';
+// import { NONAME } from 'dns';
 import maskStyle from '../components/maskStyle';
 
 var countdown, addressIcon

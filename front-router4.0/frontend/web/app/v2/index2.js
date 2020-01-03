@@ -1,6 +1,6 @@
 /* flow */
 'use strict';
-import "babel-polyfill";
+// import "babel-polyfill";
 import { dm, makeSureCurrentUrlSaveForWeixinShare } from './util/DmURL.js';
 import { jumpToPC } from './redirectPC'
 // import URL from 'url';

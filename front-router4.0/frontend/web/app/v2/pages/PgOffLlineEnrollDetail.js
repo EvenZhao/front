@@ -5,7 +5,7 @@ import EventCenter from '../EventCenter';
 import cx from 'classnames';
 import { Link } from 'react-router-dom';
 import Dm from '../util/DmURL'
-import { stat } from 'fs';
+// import { stat } from 'fs';
 
 var width = window.screen.width
 var height = window.innerHeight

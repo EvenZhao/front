@@ -16,7 +16,7 @@ import funcs from '../util/funcs'
 var countdown;
 
 class PgLogin extends React.Component {
-	mixins: [ History ]
+	// mixins: [History]
 	constructor(props) {
 	    super(props);
 		this.state = {
@@ -31,7 +31,6 @@ class PgLogin extends React.Component {
       context: '',
       display: 'none'
 		};
-
 	}
 	_onChangeLoginPhone(e){
 		// e.preventDefault();
@@ -47,7 +46,6 @@ class PgLogin extends React.Component {
 				buttonColor: false
 			})
 		}
-
 	}
 	_onChangeLoginCode(e){
 		// e.preventDefault();

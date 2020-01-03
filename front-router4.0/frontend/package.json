@@ -3,10 +3,13 @@
   "description": "mb.linked-f.com frontend",
   "main": "server.js",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "@babel/runtime": "^7.0.0",
     "async": "^2.5.0",
     "body-parser": "^1.17.2",
     "classnames": "^2.2.5",
     "compression": "^1.6.2",
+    "core-js": "^3.6.1",
     "echarts": "^3.7.2",
     "ejs": "^2.6.1",
     "express": "^4.15.3",
@@ -37,14 +40,16 @@
     "whatwg-fetch": "^1.1.1"
   },
   "devDependencies": {
-    "babel": "^6.5.2",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-export-default-from": "^7.7.4",
+    "@babel/plugin-transform-runtime": "^7.1.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
     "babel-plugin-transform-flow-strip-types": "^6.8.0",
-    "babel-polyfill": "^6.9.1",
-    "babel-preset-env": "^1.5.2",
-    "babel-preset-react": "^6.5.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "babelify": "^7.3.0",
     "browserify": "^13.0.1",
+    "chalk": "^3.0.0",
     "envify": "^3.4.0",
     "exorcist": "^0.4.0",
     "grunt": "^1.0.1",
@@ -60,8 +65,14 @@
     "grunt-sync": "^0.6.2",
     "less": "^2.7.1",
     "load-grunt-tasks": "^3.5.0",
+    "ora": "^4.0.3",
     "time-grunt": "^1.3.0",
-    "uglify-js": "^2.6.2"
+    "uglify-js": "^2.6.2",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10"
+  },
+  "scripts": {
+    "dist": "node ./webpack.config.js"
   },
   "license": "Commercial",
   "author": "Crane Leeon"
