@@ -1,6 +1,7 @@
 /* flow */
 'use strict';
 // import "babel-polyfill";
+import * as Loadable from 'react-loadable';
 import { dm, makeSureCurrentUrlSaveForWeixinShare } from './util/DmURL.js';
 import { jumpToPC } from './redirectPC'
 // import URL from 'url';
@@ -12,6 +13,7 @@ import React, { PropTypes } from 'react';
 import Common from './Common';
 import iosSelect from './util/iosSelect'
 import maskStyle from './components/maskStyle'
+import appRouter from './routerConfig';
 import {
   render
 } from 'react-dom';
@@ -37,216 +39,8 @@ import './stores/StoreRegister'
 import PLoadingMask from './components/PanelLoadingMask';
 import promptBox from './components/PromptBox';
 
-
 import PgWeuiTest from './pages/PgWeui';
 import GuidePage from './pages/GuidePage';
-import PgNoPassLogin from './pages/PgNoPassLogin'
-import PgHome from './pages/PgHome';
-import PgOnlineDetail from './pages/PgOnlineDetail';
-import PgLiveDetail from './pages/PgLiveDetail';
-import PgOfflineDetail from './pages/PgOfflineDetail';
-import PgTeacherDetail from './pages/PgTeacherDetail';
-import PgOnlineCommentList from './pages/PgOnlineCommentList';
-import PgOnlineComment from './pages/PgOnlineComment';
-import PgQuestion from './pages/PgQuestion';
-import PgOfflineEnroll from './pages/PgOfflineEnroll';
-import PgExam from './pages/PgExam';
-import PgFindPass from './pages/PgFindPass';
-import PgRegister from './pages/PgRegister';
-import PgCompleteData from './pages/PgCompleteData';
-// import PgCenter from './pages/PgCenter';
-import PersonalCenter from './pages/PersonalCenter'
-import PgCenterSet from './pages/PgCenterSet';
-import PgSetInfo from './pages/PgSetInfo';
-import PgSetNickname from './pages/PgSetNickname';
-import PgAdvice from './pages/PgAdvice';
-import PgSetPassword from './pages/PgSetPassword';
-import PgSelectAccount from './pages/PgSelectAccount';
-import PgLessonList from './pages/PgLessonList';
-import PgPriceIntroduction from './pages/PgPriceIntroduction';
-import PgQuestionDetail from './pages/PgQuestionDetail';
-import PgQuestionList from './pages/PgQuestionList';
-import PgProductList from './pages/PgProductList';
-import PgProductDetail from './pages/PgProductDetail';
-import PgMyDiscount from './pages/PgMyDiscount';
-import PgAddDiscount from './pages/PgAddDiscount';
-import PgMyCollect from './pages/PgMyCollect'
-import PgAnswerDetail from './pages/PgAnswerDetail'
-import PgAddAnswer from './pages/PgAddAnswer'
-import PgLearnRecord from './pages/PgLearnRecord'
-import PgSearchResult from './pages/PgSearchResult'
-import PgHomeIndex from './pages/PgHomeIndex'
-import PgMyQuestion from './pages/PgMyQuestion'
-import PgAddAnswerComment from './pages/PgAddAnswerComment'
-import PgTeacherLessonList from './pages/PgTeacherLessonList'
-import PgLessonQuestion from './pages/PgLessonQuestion'
-import PgLiveReserve from './pages/PgLiveReserve'
-import PgAdress from './pages/PgAdress'
-import PgExamResult from './pages/PgExamResult'
-import PgUseDiscountForOnline from './pages/PgUseDiscountForOnline'
-
-import PgPositionList from './pages/PgPositionList'
-import PgSetPhone from './pages/PgSetPhone'
-import PgUpdatePhone from './pages/PgUpdatePhone'
-import PgSetEmail from './pages/PgSetEmail'
-import PgSetPosition from './pages/PgSetPosition'
-import PgMyReserveEnroll from './pages/PgMyReserveEnroll'
-import PgChooseAccount from './pages/PgChooseAccount'
-import PgQuickLogin from './pages/PgQuickLogin'
-
-import PgMyReserveDetail from './pages/PgMyReserveDetail'
-import PgMyEnrollDetail from './pages/PgMyEnrollDetail'
-import PgMyReserveEnrollList from './pages/PgMyReserveEnrollList'
-import PgLiveReserveEnrollList from './pages/PgLiveReserveEnrollList'
-import PgOfflineReserveEnrollList from './pages/PgOfflineReserveEnrollList'
-import PgEnrollPerson from './pages/PgEnrollPerson'
-import LoginAlert from './components/LoginAlert'
-import PgOfflineNewEnroll from './pages/PgOfflineNewEnroll'
-import PgOfflineEnrollManyPeople from './pages/PgOfflineEnrollManyPeople'
-import NewEnrollManyPeople from './pages/NewEnrollManyPeople'
-import PgLawLastest from './pages/PgLawLastest'
-import PgLawDetail from './pages/PgLawDetail'
-import PgLawSearch from './pages/PgLawSearch'
-import PgFreeInvited from './pages/PgFreeInvited'
-
-import PgLoadingPlay from './pages/PgLoadingPlay'
-import FullLoading from './components/FullLoading'
-import PgPay from './pages/PgPay'
-import DownloadApp from './components/DownloadApp'
-import ChangePwdTips from './components/ChangePwdTips'
-
-//消息通知
-import PgMessageList from './pages/PgMessageList'
-import PgEnrollList from './pages/PgEnrollList'
-import ReviewNoticeList from './Message/ReviewNoticeList'
-import AnswerNoticeList from './Message/AnswerNoticeList'
-import CommentNoticeList from './Message/CommentNoticeList'
-import AdoptNoticeList from './Message/AdoptNoticeList'
-import FocusNoticeList from './Message/FocusNoticeList'
-import EnrollNoticeList from './Message/EnrollNoticeList'
-import OfflineChangeNoticeListTina from './Message/OfflineChangeNoticeListTina'
-import OfflineRemindNoticeList from './Message/OfflineRemindNoticeList'
-import InviteNoticeList from './Message/InviteNoticeList'
-import SystemNotification from './Message/SystemNotification'
-import EnterpriseAnnouncement from './Message/EnterpriseAnnouncement'
-import NoteDetails from './Message/NoteDetails'
-import AnnouncementDetails from './Message/AnnouncementDetails'
-import TaskDetails from './Message/TaskDetails'
-
-
-import PgBindWeixinFromWeb from './pages/PgBindWeixinFromWeb'
-
-import AccountManage from './AccountManage/AccountManage'
-import ChangePwd from './AccountManage/ChangePwd'
-import SafetyVerification from './AccountManage/SafetyVerification'
-
-import SetNewPwd from './AccountManage/SetNewPwd'
-import Register from './AccountManage/Register'
-import RegisterSetPD from './AccountManage/RegisterSetPD'
-import SetPassword from './AccountManage/SetPassword'
-import BindPhoneNumber from './AccountManage/BindPhoneNumber'
-import InputPhoneNumber from './AccountManage/InputPhoneNumber'
-import InvitationCode from './AccountManage/InvitationCode'
-import UserInvitedCode from './AccountManage/UserInvitedCode'
-import BolueInvitationCode from './AccountManage/BolueInvitationCode'
-import ShowInvitedCode from './AccountManage/ShowInvitedCode'
-import PgCopyCode from './AccountManage/PgCopyCode'
-
-
-import AccountLogin from './AccountManage/AccountLogin'
-import CompleteInfo from './AccountManage/CompleteInfo'
-import BindAccount from './AccountManage/BindAccount'
-
-import UpdateBindMobile from './AccountManage/UpdateBindMobile'
-import FindPassword from './AccountManage/FindPassword'
-import PgLiveVideo from './pages/PgLiveVideo'
-
-
-import Qa from './QA/Qa'
-import TopicCenter from './QA/TopicCenter'
-import TopicDetail from './QA/TopicDetail'
-import TeacherCenter from './QA/TeacherCenter'
-import InviteTeacher from './QA/InviteTeacher'
-import QaListFilter from './QA/QaListFilter'
-import QaDetail from './QA/QaDetail'
-import BelongsToTopic from './QA/BelongsToTopic'
-import AnswerDetail from './QA/AnswerDetail'
-import QuesLabelSelection from './QA/QuesLabelSelection'
-import AnswerQuestion from './QA/AnswerQuestion'
-import AskQuestion from './QA/AskQuestion'
-import MyPersonalized from './QA/MyPersonalized' //我的个性化推荐
-import PgAnserByPhone from './QA/PgAnserByPhone'
-
-import PgChooseCity from './pages/PgChooseCity'
-import PgofflineCheckin from './pages/PgofflineCheckin'
-
-
-import LecturerHomePage from './PgCenter/LecturerHomePage'
-import PersonalPgHome from './PgCenter/PersonalPgHome'
-import MemberPgHome from './PgCenter/MemberPgHome'
-import LectureQa from './PgCenter/LectureQa'
-import CoursePlan from './PgCenter/CoursePlan'
-import ChoiceCourse from './PgCenter/ChoiceCourse'
-import CoursePlanDetail from './PgCenter/CoursePlanDetail'
-import Task from './PgCenter/taskList' //本来导入的是Task 但是跟后台返回的URL 不符合 所以改成新的列表
-import TaskDetail from './PgCenter/TaskDetail'
-import Participants from './PgCenter/Participants'
-import Coupons from './PgCenter/Coupons'
-
-import PgConfirmenrollment from './pages/PgConfirmenrollment'
-import PgOfflineAddEnroll from './pages/PgOfflineAddEnroll'
-
-import QaList from './PgCenter/QaList'
-import MyQa from './PgCenter/MyQa'
-import MyAttention from './PgCenter/MyAttention'
-
-import PgPersonEnroll from './pages/PgPersonEnroll'
-
-import SetDate from './PgCenter/SetDate'
-import PgtestPaper from './pages/PgtestPaper'
-import PgtestPaperResult from './pages/PgtestPaperResult'
-import PgTaskPaper from './pages/PgTaskPaper'
-import PgNoMessage from './pages/PgNoMessage'
-import PgECharts from './EMP/PgECharts'
-import bolueWeeklyReport from './EMP/bolueWeeklyReport'
-import SearchResultOnline from './components/SearchResultOnline'
-
-import PgError from './pages/PgError'
-import PgOffLlineEnrollDetail from './pages/PgOffLlineEnrollDetail'
-import PgOfflineJoinDetail from './pages/PgOfflineJoinDetail'
-
-
-import PendingReview from './Review/PendingReview'
-import PendingReviewDetail from './Review/PendingReviewDetail'
-import ReviewDetail from './Review/ReviewDetail'
-import offlineToExamine from './offlineExamine/offlineToExamine'
-import offlineToExamineDetail from './offlineExamine/offlineToExamineDetail'
-import offlineHistoryToExamineDetail from './offlineExamine/offlineHistoryToExamineDetail'
-import AppActivationTask from './components/appActivationTask'
-
-import newbieTaskIndex from './NewbieTask/newbieTaskIndex'
-import taskList from './PgCenter/taskList'
-import chooseTopic from './NewbieTask/chooseTopic'
-import perfectData from './NewbieTask/perfectData'
-import bindPhone from './NewbieTask/bindPhoneNumber'
-import bindEmail from './NewbieTask/bindEmail'
-import bindWx from './NewbieTask/bindWx'
-import focusOnWX from './NewbieTask/focusOnWX'
-import vipPerfectInfo from './NewbieTask/vipPerfectInfo'
-import IntegralIntroduction from './NewbieTask/IntegralIntroduction'
-import PointsMall from './NewbieTask/PointsMall'
-import VipCouponsDetail from './NewbieTask/VipCouponsDetail'
-import ExchangeRecords from './NewbieTask/ExchangeRecords'
-import Pointsdetails from './NewbieTask/Pointsdetails'
-
-import PendingReviewAlert from './components/PendingReviewAlert'
-import QRCodeSignIn from './components/QRCodeSignIn'
-import serviceProtocol from './PgCenter/serviceProtocol'
-import RegisterInvitationCode from './AccountManage/RegisterInvitationCode'
-import PgOfflineJoinCodeDetail from './pages/PgOfflineJoinCodeDetail'
-import PgresourceShare from './pages/PgresourceShare'
-import GetKnowledgeCard from './pages/GetKnowledgeCard'
-import AttentionPlease from './components/AttentionPlease'
 
 var urlll = document.location.href; // 获取当前url链接
 var ttt = urlll.split('activity')[1]
@@ -594,7 +388,6 @@ class PgIndex extends React.Component {
   }
 
   render() {
-
     return (
       <div>
         {
@@ -620,209 +413,14 @@ class PgIndex extends React.Component {
                       >
                         <Route location={location} key={location.key}>
                           <Switch>
-                            <Route exact path={`${__rootDir}/list/:type`} component={withRouter(PgLessonList)} />
-                            <Route exact path={`${__rootDir}/lesson/online/:id`} component={withRouter(PgOnlineDetail)} />
-                            <Route exact path={`${__rootDir}/lesson/live/:id`} component={withRouter(PgLiveDetail)} />
-                            <Route exact path={`${__rootDir}/lesson/offline/:id`} component={withRouter(PgOfflineDetail)} />
-                            <Route exact path={`${__rootDir}/price`} component={withRouter(PgPriceIntroduction)} />
-                            <Route exact path={`${__rootDir}/teacher/:id`} component={withRouter(PgTeacherDetail)} />
-                            <Route exact path={`${__rootDir}/commentList/:id`} component={withRouter(PgOnlineCommentList)} />
-                            <Route exact path={`${__rootDir}/question`} component={withRouter(PgQuestion)} />
-                            <Route exact path={`${__rootDir}/lessonQuestion/:type/:id`} component={withRouter(PgLessonQuestion)} />
-                            <Route exact path={`${__rootDir}/comment/:id`} component={withRouter(PgOnlineComment)} />
-                            <Route exact path={`${__rootDir}/exam/:id/:catalogId`} component={withRouter(PgExam)} />
-                            <Route exact path={`${__rootDir}/enroll/:id`} component={withRouter(PgOfflineEnroll)} />
-                            <Route exact path={`${__rootDir}/questionDetail/:id`} component={withRouter(PgQuestionDetail)} />
-                            <Route exact path={`${__rootDir}/questionList`} component={withRouter(PgQuestionList)} />
-                            <Route exact path={`${__rootDir}/answerDetail/:id`} component={withRouter(AnswerDetail)} />
-                            <Route exact path={`${__rootDir}/addAnswer`} component={withRouter(PgAddAnswer)} />
-                            <Route exact path={`${__rootDir}/addAnswerComment`} component={withRouter(PgAddAnswerComment)} />
-                            <Route exact path={`${__rootDir}/teacher/lesson/list/:type`} component={withRouter(PgTeacherLessonList)} />
-                            <Route exact path={`${__rootDir}/reserveDetail/:id`} component={withRouter(PgLiveReserve)} />
-                            <Route exact path={`${__rootDir}/map`} component={withRouter(PgAdress)} />
-                            <Route exact path={`${__rootDir}/examDetail/:id/:catalogId`} component={withRouter(PgExamResult)} />
-                            <Route exact path={`${__rootDir}/home`} component={withRouter(PgHome)} />
-                            <Route exact path={`${__rootDir}/useDiscount/:type/:id`} component={withRouter(PgUseDiscountForOnline)} />
-                            <Route exact path={`${__rootDir}/chooseAccount`} component={withRouter(PgChooseAccount)} />
-                            <Route exact path={`${__rootDir}/quickLogin`} component={withRouter(PgQuickLogin)} />
-                            <Route exact path={`${__rootDir}/LoginAlert`} component={withRouter(LoginAlert)} />
-                            <Route exact path={`${__rootDir}/PgLawLastest`} component={withRouter(PgLawLastest)} />
-                            <Route exact path={`${__rootDir}/LoginAlert`} component={withRouter(LoginAlert)} />
-                            <Route exact path={`${__rootDir}/FullLoading`} component={withRouter(FullLoading)} />
-                            <Route exact path={`${__rootDir}/freeInvited`} component={withRouter(PgFreeInvited)} />
-                            <Route exact path={`${__rootDir}/AccountManage`} component={withRouter(AccountManage)} />
-                            <Route exact path={`${__rootDir}/ChangePwd`} component={withRouter(ChangePwd)} />
-                            <Route exact path={`${__rootDir}/SafetyVerification`} component={withRouter(SafetyVerification)} />
-
-
-                            <Route exact path={`${__rootDir}/SetNewPwd`} component={withRouter(SetNewPwd)} />
-                            <Route exact path={`${__rootDir}/PhoneRegister`} component={withRouter(Register)} />
-                            <Route exact path={`${__rootDir}/SetPassword`} component={withRouter(SetPassword)} />
-                            <Route exact path={`${__rootDir}/RegisterSetPD`} component={withRouter(RegisterSetPD)} />
-                            <Route exact path={`${__rootDir}/BindPhoneNumber`} component={withRouter(BindPhoneNumber)} />
-                            <Route exact path={`${__rootDir}/InputPhoneNumber`} component={withRouter(InputPhoneNumber)} />
-
-                            <Route exact path={`${__rootDir}/login`} component={withRouter(AccountLogin)} />
-                            <Route exact path={`${__rootDir}/CompleteInfo`} component={withRouter(CompleteInfo)}></Route>
-                            <Route exact path={`${__rootDir}/BindAccount`} component={withRouter(BindAccount)}></Route>
-
-                            <Route exact path={`${__rootDir}/UpdateBindMobile`} component={withRouter(UpdateBindMobile)} />
-                            <Route exact path={`${__rootDir}/FindPassword`} component={withRouter(FindPassword)} />
-
-                            <Route exact path={`${__rootDir}/PgMyReserveDetail/:id`} component={withRouter(PgMyReserveDetail)} />
-                            <Route exact path={`${__rootDir}/PgMyEnrollDetail/:id`} component={withRouter(PgMyEnrollDetail)} />
-                            <Route exact path={`${__rootDir}/PgMyReserveEnrollList`} component={withRouter(PgMyReserveEnrollList)} />
-                            <Route exact path={`${__rootDir}/PgLiveReserveEnrollList`} component={withRouter(PgLiveReserveEnrollList)} />
-                            <Route exact path={`${__rootDir}/PgOfflineReserveEnrollList`} component={withRouter(PgOfflineReserveEnrollList)} />
-
-                            <Route exact path={`${__rootDir}/PgEnrollPerson/:id`} component={withRouter(PgEnrollPerson)} />
-                            <Route exact path={`${__rootDir}/PgLawDetail/:id`} component={withRouter(PgLawDetail)} />
-                            <Route exact path={`${__rootDir}/PgLawSearch`} component={withRouter(PgLawSearch)} />
-
-                            <Route exact path={`${__rootDir}/PgECharts`} component={withRouter(PgECharts)}></Route>
-
-                            <Route exact path={`${__rootDir}/PgBindWeixinFromWeb`} component={withRouter(PgBindWeixinFromWeb)} />
-                            <Route exact path={`${__rootDir}/nplogin`} component={withRouter(PgNoPassLogin)} />
-                            <Route exact path={`${__rootDir}/findpass`} component={withRouter(PgFindPass)} />
-                            <Route exact path={`${__rootDir}/register`} component={withRouter(PgRegister)} />
-                            <Route exact path={`${__rootDir}/PgCompleteData`} component={withRouter(PgCompleteData)} />
-                            <Route exact path={`${__rootDir}/PgCenter`} component={withRouter(PersonalCenter)} />
-                            {/* <Route exact path={`${__rootDir}/PersonalCenter`} component={withRouter(PersonalCenter)} />*/}
-
-
-                            <Route exact path={`${__rootDir}/PgCenterSet`} component={withRouter(PgCenterSet)} />
-                            <Route exact path={`${__rootDir}/PgSetInfo`} component={withRouter(PgSetInfo)} />
-                            <Route exact path={`${__rootDir}/PgSetNickname`} component={withRouter(PgSetNickname)} />
-                            <Route exact path={`${__rootDir}/PgAdvice`} component={withRouter(PgAdvice)}></Route>
-                            <Route exact path={`${__rootDir}/PgSetPassword`} component={withRouter(PgSetPassword)}></Route>
-                            <Route exact path={`${__rootDir}/PgSelectAccount`} component={withRouter(PgSelectAccount)}></Route>
-                            <Route exact path={`${__rootDir}/promptBox`} component={withRouter(promptBox)}></Route>
-                            <Route exact path={`${__rootDir}/PgProductList`} component={withRouter(PgProductList)}></Route>
-                            <Route exact path={`${__rootDir}/ProductDetail/:id`} component={withRouter(PgProductDetail)}></Route>
-                            <Route exact path={`${__rootDir}/PgMyDiscount`} component={withRouter(PgMyDiscount)}></Route>
-                            <Route exact path={`${__rootDir}/PgAddDiscount`} component={withRouter(PgAddDiscount)}></Route>
-                            <Route exact path={`${__rootDir}/PgMyCollect`} component={withRouter(PgMyCollect)}></Route>
-                            <Route exact path={`${__rootDir}/PgLearnRecord`} component={withRouter(PgLearnRecord)}></Route>
-                            <Route exact path={`${__rootDir}/PgSearchResult`} component={withRouter(PgSearchResult)}></Route>
-                            <Route exact path={`${__rootDir}/PgHomeIndex`} component={withRouter(PgHomeIndex)}></Route>
-                            <Route exact path={`${__rootDir}/PgMyQuestion`} component={withRouter(PgMyQuestion)}></Route>
-                            <Route exact path={`${__rootDir}/PgPositionList`} component={withRouter(PgPositionList)}></Route>
-                            <Route exact path={`${__rootDir}/PgSetPhone`} component={withRouter(PgSetPhone)}></Route>
-                            <Route exact path={`${__rootDir}/PgUpdatePhone`} component={withRouter(PgUpdatePhone)}></Route>
-                            <Route exact path={`${__rootDir}/PgSetEmail`} component={withRouter(PgSetEmail)}></Route>
-                            <Route exact path={`${__rootDir}/PgSetPosition`} component={withRouter(PgSetPosition)}></Route>
-                            <Route exact path={`${__rootDir}/PgMyReserveEnroll`} component={withRouter(PgMyReserveEnroll)}></Route>
-                            <Route exact path={`${__rootDir}/PgPay`} component={withRouter(PgPay)}></Route>
-                            <Route exact path={`${__rootDir}/Qa`} component={withRouter(Qa)} />
-                            <Route exact path={`${__rootDir}/TopicCenter`} component={withRouter(TopicCenter)}></Route>
-                            <Route exact path={`${__rootDir}/TopicDetail/:id`} component={withRouter(TopicDetail)}></Route>
-                            <Route exact path={`${__rootDir}/TeacherCenter`} component={withRouter(TeacherCenter)}></Route>
-                            <Route exact path={`${__rootDir}/InviteTeacher`} component={withRouter(InviteTeacher)}></Route>
-                            <Route exact path={`${__rootDir}/QaListFilter`} component={withRouter(QaListFilter)}></Route>
-                            <Route exact path={`${__rootDir}/QaDetail/:id`} component={withRouter(QaDetail)}></Route>
-                            <Route exact path={`${__rootDir}/BelongsToTopic`} component={withRouter(BelongsToTopic)}></Route>
-                            <Route exact path={`${__rootDir}/QuesLabelSelection`} component={withRouter(QuesLabelSelection)}></Route>
-                            <Route exact path={`${__rootDir}/AnswerQuestion`} component={withRouter(AnswerQuestion)}></Route>
-                            <Route exact path={`${__rootDir}/AskQuestion`} component={withRouter(AskQuestion)}></Route>
-
-                            <Route exact path={`${__rootDir}/MyPersonalized`} component={withRouter(MyPersonalized)}> </Route>
-
-
-                            <Route exact path={`${__rootDir}/LecturerHomePage/:id`} component={withRouter(LecturerHomePage)}></Route>
-                            <Route exact path={`${__rootDir}/MemberPgHome`} component={withRouter(MemberPgHome)}></Route>
-                            <Route exact path={`${__rootDir}/LectureQa`} component={withRouter(LectureQa)}></Route>
-                            <Route exact path={`${__rootDir}/CoursePlan`} component={withRouter(CoursePlan)}></Route>
-                            <Route exact path={`${__rootDir}/CoursePlanDetail/:id`} component={withRouter(CoursePlanDetail)}></Route>
-                            <Route exact path={`${__rootDir}/Task`} component={withRouter(Task)}></Route>
-                            <Route exact path={`${__rootDir}/TaskDetail/:id`} component={withRouter(TaskDetail)}></Route>
-                            <Route exact path={`${__rootDir}/Participants`} component={withRouter(Participants)}></Route>
-                            <Route exact path={`${__rootDir}/Coupons`} component={withRouter(Coupons)}></Route>
-                            <Route exact path={`${__rootDir}/QaList`} component={withRouter(QaList)}></Route>
-                            <Route exact path={`${__rootDir}/MyQa`} component={withRouter(MyQa)}></Route>
-                            <Route exact path={`${__rootDir}/MyAttention`} component={withRouter(MyAttention)}></Route>
-                            <Route exact path={`${__rootDir}/SetDate`} component={withRouter(SetDate)}></Route>
-                            <Route exact path={`${__rootDir}/PgMessageList`} component={withRouter(PgMessageList)}></Route>
-                            <Route exact path={`${__rootDir}/PgEnrollList`} component={withRouter(PgEnrollList)}></Route>
-                            <Route exact path={`${__rootDir}/PgLiveVideo/:id`} component={withRouter(PgLiveVideo)}></Route>
-
-
-                            <Route exact path={`${__rootDir}/PgChooseCity`} component={withRouter(PgChooseCity)}></Route>
-
-                            {/*<Route exact path={`${__rootDir}/PgOfflineNewEnroll`} component={withRouter(PgOfflineNewEnroll)}></Route>*/}
-
-                            <Route exact path={`${__rootDir}/PgOfflineEnrollManyPeople`} component={withRouter(PgOfflineEnrollManyPeople)}></Route>
-                            <Route exact path={`${__rootDir}/NewEnrollManyPeople`} component={withRouter(NewEnrollManyPeople)}></Route>
-                            <Route exact path={`${__rootDir}/PgConfirmenrollment`} component={withRouter(PgConfirmenrollment)}></Route>
-                            <Route exact path={`${__rootDir}/PgOfflineAddEnroll`} component={withRouter(PgOfflineAddEnroll)}></Route>
-                            <Route exact path={`${__rootDir}/PgPersonEnroll`} component={withRouter(PgPersonEnroll)}></Route>
-                            <Route exact path={`${__rootDir}/PgtestPaper`} component={withRouter(PgtestPaper)}></Route>
-                            <Route exact path={`${__rootDir}/PgtestPaperResult/:id`} component={withRouter(PgtestPaperResult)}></Route>
-                            <Route exact path={`${__rootDir}/offlineCheckin`} component={withRouter(PgofflineCheckin)}></Route>
-                            <Route exact path={`${__rootDir}/PgTaskPaper`} component={withRouter(PgTaskPaper)}></Route>
-
-                            <Route exact path={`${__rootDir}/ChoiceCourse`} component={withRouter(ChoiceCourse)}></Route>
-                            <Route exact path={`${__rootDir}/PersonalPgHome/:id`} component={withRouter(PersonalPgHome)}></Route>
-
-
-                            <Route exact path={`${__rootDir}/AnswerNoticeList`} component={withRouter(AnswerNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/CommentNoticeList`} component={withRouter(CommentNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/AdoptNoticeList`} component={withRouter(AdoptNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/ReviewNoticeList`} component={withRouter(ReviewNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/FocusNoticeList`} component={withRouter(FocusNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/EnrollNoticeList`} component={withRouter(EnrollNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/OfflineRemindNoticeList`} component={withRouter(OfflineRemindNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/OfflineChangeNoticeList`} component={withRouter(OfflineChangeNoticeListTina)}></Route>
-                            <Route exact path={`${__rootDir}/InviteNoticeList`} component={withRouter(InviteNoticeList)}></Route>
-                            <Route exact path={`${__rootDir}/SystemNotification`} component={withRouter(SystemNotification)}></Route>
-                            <Route exact path={`${__rootDir}/EnterpriseAnnouncement`} component={withRouter(EnterpriseAnnouncement)}></Route>
-                            <Route exact path={`${__rootDir}/NoteDetails/:id`} component={withRouter(NoteDetails)}></Route>
-                            <Route exact path={`${__rootDir}/AnnouncementDetails/:id`} component={withRouter(AnnouncementDetails)}></Route>
-                            <Route exact path={`${__rootDir}/TaskDetails/:id`} component={withRouter(TaskDetails)}></Route>
-
-                            <Route exact path={`${__rootDir}/PendingReview`} component={withRouter(PendingReview)}></Route>
-                            <Route exact path={`${__rootDir}/PendingReviewDetail/:id`} component={withRouter(PendingReviewDetail)}></Route>
-                            <Route exact path={`${__rootDir}/ReviewDetail/:id`} component={withRouter(ReviewDetail)}></Route>
-                            <Route exact path={`${__rootDir}/PgError`} component={withRouter(PgError)}></Route>
-                            <Route exact path={`${__rootDir}/PgOffLlineEnrollDetail/:id`} component={withRouter(PgOffLlineEnrollDetail)}></Route>
-                            <Route exact path={`${__rootDir}/PgOffLlineMainHolderEnrollDetail/:_id`} component={withRouter(PgOffLlineEnrollDetail)}></Route>
-                            <Route exact path={`${__rootDir}/PgOfflineJoinDetail/:id/:checkcode`} component={withRouter(PgOfflineJoinCodeDetail)}></Route>
-                            <Route exact path={`${__rootDir}/offlineToExamine`} component={withRouter(offlineToExamine)}></Route>
-                            <Route exact path={`${__rootDir}/offlineToExamineDetail/:id`} component={withRouter(offlineToExamineDetail)}></Route>
-                            <Route exact path={`${__rootDir}/offlineHistoryToExamineDetail/:id`} component={withRouter(offlineHistoryToExamineDetail)}></Route>
-                            <Route exact path={`${__rootDir}/newbieTaskIndex`} component={withRouter(newbieTaskIndex)}></Route>
-                            <Route exact path={`${__rootDir}/taskList`} component={withRouter(taskList)}></Route>
-                            <Route exact path={`${__rootDir}/chooseTopic`} component={withRouter(chooseTopic)}></Route>
-                            <Route exact path={`${__rootDir}/perfectData`} component={withRouter(perfectData)}></Route>
-                            <Route exact path={`${__rootDir}/bindPhone`} component={withRouter(bindPhone)}></Route>
-                            <Route exact path={`${__rootDir}/bindEmail`} component={withRouter(bindEmail)}></Route>
-                            <Route exact path={`${__rootDir}/bindWx`} component={withRouter(bindWx)}></Route>
-                            <Route exact path={`${__rootDir}/focusOnWX`} component={withRouter(focusOnWX)}></Route>
-                            <Route exact path={`${__rootDir}/vipPerfectInfo`} component={withRouter(vipPerfectInfo)}></Route>
-                            <Route exact path={`${__rootDir}/IntegralIntroduction`} component={withRouter(IntegralIntroduction)}></Route>
-                            <Route exact path={`${__rootDir}/PointsMall`} component={withRouter(PointsMall)}></Route>
-                            <Route exact path={`${__rootDir}/VipCouponsDetail/:id`} component={withRouter(VipCouponsDetail)}></Route>
-                            <Route exact path={`${__rootDir}/ExchangeRecords`} component={withRouter(ExchangeRecords)}></Route>
-                            <Route exact path={`${__rootDir}/Pointsdetails`} component={withRouter(Pointsdetails)}></Route>
-
-
-                            <Route exact path={`${__rootDir}/InvitationCode`} component={withRouter(InvitationCode)}></Route>
-                            <Route exact path={`${__rootDir}/about/service-protocol`} component={withRouter(serviceProtocol)}></Route>
-                            <Route exact path={`${__rootDir}/RegisterInvitationCode`} component={withRouter(RegisterInvitationCode)}></Route>
-                            <Route exact path={`${__rootDir}/UserInvitedCode`} component={withRouter(UserInvitedCode)}></Route>
-                            <Route exact path={`${__rootDir}/BolueInvitationCode`} component={withRouter(BolueInvitationCode)}></Route>
-                            <Route exact path={`${__rootDir}/ShowInvitedCode`} component={withRouter(ShowInvitedCode)}></Route>
-                            <Route exact path={`${__rootDir}/PgCopyCode`} component={withRouter(PgCopyCode)}></Route>
-                            <Route exact path={`${__rootDir}/PgOfflineJoinCodeDetail/:checkcode`} component={withRouter(PgOfflineJoinCodeDetail)}></Route>
-                            <Route exact path={`${__rootDir}/resourceShare/:id`} component={withRouter(PgresourceShare)}></Route>
-                            <Route exact path={`${__rootDir}/PgAnserByPhone/:id`} component={withRouter(PgAnserByPhone)}></Route>
-                            <Route exact path={`${__rootDir}/AttentionPlease`} component={withRouter(AttentionPlease)}></Route>
-
-
-                            <Route exact path={`${__rootDir}/`} component={withRouter(PgHomeIndex)}></Route>
-                            <Route exact path={`${__rootDir}/GetKnowledgeCard/:id`} component={withRouter(GetKnowledgeCard)}></Route>
-
-
-
+                            {
+                              appRouter.map(item => <Route
+                                exact
+                                path={item.path}
+                                component={withRouter(item.component)}
+                                key={item.path}
+                              />)
+                            }
                             <Route component={withRouter(PgError)} />
                           </Switch>
                         </Route>
